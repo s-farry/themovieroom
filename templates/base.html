@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
+<title>The Movie Room</title>
+<meta charset="iso-8859-1">
+<link rel="stylesheet" href="{% static 'styles/layout.css' %}" type="text/css">
+<!--[if lt IE 9]><script src="scripts/html5shiv.js"></script><![endif]-->
+<link rel="apple-touch-icon" sizes="152x152" href="{% static 'images/themovieroom_152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/themovieroom_180x180.png">
+<link rel="apple-touch-icon" sizes="167x167" href="{% static 'images/themovieroom_167x167.png">
+
+</head>
+<body>
+<div class="wrapper row1">
+  <header id="header" class="clear">
+<!---    <nav> 
+      <ul>
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li><a href="">Features</a></li>
+        <li><a href="{% url 'films:index' %}">Reviews</a></li>
+      </ul>
+    </nav> -->
+    <div id="hgroup">
+      <!-- <h1><a href="#">The Movie Room</a></h1>
+      %<h2>All about the movies</h2>-->
+         <img src="{% static 'images/themovieroom_trim.png' %}" alt="" height=100px>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li><a href="">Features</a></li>
+        <li><a href="{% url 'films:index' %}">Reviews</a></li>
+      </ul>
+    <form action="{% url 'SearchListView' %}" method="get">
+      <fieldset>
+        <legend>Search:</legend>
+        <input type="text" placeholder="Search the for film, actor etc..&hellip;" name="q", onFocus="this.value=(this.value=='Search TheMovieRoom.co.uk&hellip;')? '' : this.value ;">
+        <input type="submit" id="sf_submit" value="">
+      </fieldset>
+    </form>
+</nav>
+  </header>
+</div>
+<!-- content -->
+<div class="wrapper row2">
+  <div id="container" class="clear">
+    <!-- Slider -->
+    <section id="slider" class="clear">
+      {% block image %}
+      {% endblock %}
+    </section>
+    <!-- Content -->
+    <div id="homepage">
+      <!-- ########################################################################################## -->
+      <section class="clear">
+        <article class="two_third">
+	  {% block body %}
+	  {% endblock %}
+        </article>
+        <article class="one_third lastbox">
+	  {% block sidebar %}
+	  {% endblock %}
+        </article>
+      </section>
+      <!-- / Two Third -->
+      <!-- ########################################################################################## -->
+      <!-- ########################################################################################## -->
+      <!-- ########################################################################################## -->
+      <!-- ########################################################################################## -->
+      <!-- One Third -->
+      <!--
+      <section class="services clear">
+        <article class="one_third">
+          <h2>Lorum ipsum dolor</h2>
+          <img src="{% static 'images/demo/80x80.gif' %}" alt="">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc non diam erat. In fringilla massa ut nisi ullamcorper.</p>
+          <footer class="more"><a href="#">Read More &raquo;</a></footer>
+        </article>
+        <article class="one_third">
+          <h2>Lorum ipsum dolor</h2>
+          <img src="{% static 'images/demo/80x80.gif' %}" alt="">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc non diam erat. In fringilla massa ut nisi ullamcorper.</p>
+          <footer class="more"><a href="#">Read More &raquo;</a></footer>
+        </article>
+        <article class="one_third lastbox">
+          <h2>Lorum ipsum dolor</h2>
+          <img src="{% static 'images/demo/80x80.gif' %}" alt="">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc non diam erat. In fringilla massa ut nisi ullamcorper.</p>
+          <footer class="more"><a href="#">Read More &raquo;</a></footer>
+        </article>
+        <div class="spacer"></div>
+      </section>
+      <!-- ########################################################################################## -->
+    </div>
+    <!-- / content body -->
+  </div>
+</div>
+<!-- Footer -->
+<div class="wrapper row3">
+  <footer id="footer" class="clear">
+    <p class="fl_left">Copyright &copy; 2018 - All Rights Reserved - <a href="#">TheMovieRoom.co.uk</a></p>
+    <p class="fl_right">This website uses the TMDb API but is not endorsed or certified by TMDb.</a></p>
+  </footer>
+</div>
+</body>
+</html>

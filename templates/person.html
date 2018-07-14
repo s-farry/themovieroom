@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}My amazing blog{% endblock %}
+
+{% block body %}
+<img id = "profile" src="/{{person.image }}" alt="">
+<h2>{{ person.first_name }} {{ person.last_name }}</h2>
+<br>
+DOB: {{person.date_of_birth}} ( Age {{ person.age }})<br>
+{%if person.cast.count > 0 %}
+Starred in:<br>
+{% for film in person.cast.all %}
+   <a href = "{% url 'films:detail' film.id %}">{{film.title}} ({{film.release_date.year}})</a><br>
+  {% endfor %}
+{% endif %}
+{%if person.director.count > 0 %}
+Directed<br>
+   {% for film in person.director.all %}   
+   <a href = "{% url 'films:detail' film.id %}">{{film.title}} ({{film.release_date.year}})</a><br>
+{% endfor %}
+{% endif %}
+</ul>
+{% endblock %}

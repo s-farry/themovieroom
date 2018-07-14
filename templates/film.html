@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}{{ review.title }}{% endblock %}
+
+
+{% block image %}
+<article class = "review">
+<figure><img src="/{{review.image }}" alt=""></figure>
+</article>
+  <article class = "quote" >
+"{{review.quote}}"</article>
+
+{% endblock %}
+
+
+{% block body %}
+<h2>{{ review.title }} ( {{ review.release_date.year }} )</h2>
+<ul>
+  <!---<li> Director:
+    {% for person in review.director.all %}
+    {{ person.first_name }} {{person.last_name}}
+    {% endfor %}
+  <li>Runtime: {{ review.runtime }} minutes</li>
+  <li>Starring
+    {% for person in review.cast.all %}
+    {% if forloop.first %}{% else %}
+    {% if forloop.last %} and {% else %}, {% endif %}
+    {% endif %}{{ person.first_name }} {{person.last_name}}
+    {% endfor %}
+  </li>-->
+  <li>
+    {% for star in review.stars  %}
+    {% if star == 1 %} ★
+    {% elif star == 0.5 %} 1/2
+    {% endif %}
+    {% endfor %}
+    </li>
+</ul>
+<div class = "review">{{review.body}}</div>
+{% endblock %}
+
+
+{% block sidebar %}
+
+<table id = "t01"><tbody>
+<tr><th>Directed by</th></tr>
+    {% for person in review.director.all %}
+<tr><td> <a href = "{% url 'persons' person.id %}">{{ person.first_name }} {{person.last_name}}</td></tr>
+    {% endfor %}
+<tr><th>Starring</th></tr>
+    {% for person in review.cast.all %}    
+    <tr><td> <a href = "{% url 'persons' person.id %}">{{ person.first_name }} {{person.last_name}}</td></tr>
+    {% endfor %}
+
+<tr><th>Runtime: {{ review.runtime }} minutes</th></tr>
+  <tr><td>
+<span class="imdbRatingPlugin" data-user="ur4256421" data-title="tt{{ review.imdb }}" data-style="p4"><a href="http://www.imdb.com/title/tt{{ review.imdb }}/?ref_=plg_rt_1"><img src="http://g-ecx.images-amazon.com/images/G/01/imdb/plugins/rating/images/imdb_31x14.png" alt="{{review.title}} ({{review.release_date.year}}) on IMDb" />
+</a></span><script>(function(d,s,id){var js,stags=d.getElementsByTagName(s)[0];if(d.getElementById(id)){return;}js=d.createElement(s);js.id=id;js.src="http://g-ec2.images-amazon.com/images/G/01/imdb/plugins/rating/js/rating.min.js";stags.parentNode.insertBefore(js,stags);})(document,'script','imdb-rating-api');</script>
+</th></td>
+</tbody></table>
+{% endblock %}

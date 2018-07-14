@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}My amazing blog{% endblock %}
+
+
+
+{% block image %}
+{% endblock %}
+
+{% block body %}
+<ul>{% if films.count > 0 %}
+<h2>Reviews</h2>
+  {% for film in films %}
+  <li> <a href = "{% url 'films:detail' film.id %}">{{film.title}} ({{film.release_date.year}})</a></li>
+  {% endfor %}
+</ul>
+{% endif %}
+<ul>{% if persons.count > 0 %}
+<h2>People</h2>
+  {% for person in persons %}
+  <li> <a href = "{% url 'persons' person.id %}"> {{person.first_name}} {{person.last_name}}</a></li>
+{%if person.cast.count > 0 %}
+<ul>
+{% for film in person.cast.all %}
+  <li> <a href = "{% url 'films:detail' film.id %}">{{film.title}} ({{film.release_date.year}})</a></li>
+  {% endfor %}
+  </ul>
+{% endif %}
+{%if person.director.count > 0 %}
+Directed
+{% for film in person.director.all %}
+{{film.title}}<br>
+{% endfor %}
+{% endif %}
+  {% endfor %}
+</ul>
+{% endif %}
+<footer class="more"><a href="#">Read More &raquo;</a></footer>
+{% endblock %}

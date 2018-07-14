@@ -1,0 +1,66 @@
+
+{% extends "base.html" %}')
+f.write('{% load static %}')
+
+
+{% block title %}My amazing blog{% endblock %}
+
+
+{% block sidebar %}
+
+<table id = "t01"><tbody>
+<tr><th><img height=18px src = {% static 'images/incinema.png' %}>&nbsp;&nbsp;In Cinemas Now</th></tr>
+<tr><td> <a href="{% url 'films:detail' 2 %}">Avengers: Infinity War</a>&nbsp;&nbsp;★★★★</tr></td><tr><td> Rampage</tr></td><tr><td> A Quiet Place</tr></td><tr><td> Ready Player One</tr></td><tr><td> Blockers</tr></td><tr><td> Truth or Dare</tr></td><tr><td> Isle of Dogs</tr></td><tr><td> Love, Simon</tr></td>
+<tr><th><img height=18px src = {% static 'images/comingsoon.png' %}>&nbsp;&nbsp;Coming Soon</th></tr>
+<tr><td> Solo: A Star Wars Story</tr></td><tr><td> Deadpool 2</tr></td><tr><td> Submergence</tr></td><tr><td> Show Dogs</tr></td><tr><td> Adrift</tr></td><tr><td> The Breadwinner</tr></td><tr><td> Book Club</tr></td><tr><td> Samson</tr></td>
+</tbody></table>
+{% endblock %}
+
+
+{% block image %}
+{% endblock %}
+
+{% block body %}
+<div class = "mainsynopsis"><a href="{% url 'films:detail' 3 %}"><figure class = "preview"><img src = static/images/Loveless_dsc3805-1220x814.jpg><br>
+<figcaption id = "title"> <h1> Loveless (2017) </h1>
+★★1/2
+</figcaption>
+<figcaption id = "synopsis">
+An estranged Russian couple going through a brutal divorce both have new partners and want to start over until their 12-year-old son disappears after witnessing one of their fights.
+</figcaption>
+</figure></a>
+</div>
+
+<div class = "synopsis">
+  {% for review in reviews %}
+{% if review.id != 3 %}
+<a href = "{% url 'films:detail' review.id %}">
+<figure>
+  <img src = "{{review.image_small}}">
+<figcaption>
+{{review.title}} ({{review.release_date.year}})<br>
+{% for star in review.stars  %}
+{% if star == 1 %} ★
+{% elif star == 0.5 %} 1/2
+{% endif %}
+{% endfor %}
+</figcaption>
+</figure>
+</a>
+{% endif %}
+  {% endfor %}
+
+</div>
+<footer class="more"><a href="{% url 'films:index' %}">Read More &raquo;</a></footer>
+
+<div class = "features">
+  {% for feature in features %}
+<div class = "feature">
+<h1>{{feature.title}}</h1>
+<img src = "{{feature.image}}">
+{{feature.text}}
+</div>
+{% endfor %}
+</div>
+{% endblock %}
+<footer class="more"><a href="{% url 'films:index' %}">Read More &raquo;</a></footer>

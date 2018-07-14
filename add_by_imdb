@@ -1,0 +1,93 @@
+#!/usr/bin/env python
+
+import django, os
+import tmdbsimple as tmdb
+
+#os.environ["DJANGO_SETTINGS_MODULE"] = "themovieroom.settings"
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "themovieroom.settings")
+django.setup()
+
+from films.models import film, person, review
+
+
+tmdb.API_KEY = '8cf2bbd6e9aa1a32c36bd9bb68afa0c9'
+f = tmdb.Find()
+
+ncast = 3
+
+if len(os.sys.argv) != 2 and len(os.sys.argv) != 3:
+    print 'Only one argument is required:'
+    print '  %s "person name"' % sys.argv[0]
+    os.sys.exit(2)
+
+
+f = tmdb.Find(os.sys.argv[1])
+if len(os.sys.argv) == 3: ncast = os.sys.argv[2]
+
+from imdb import IMDb
+ia = IMDb()
+
+print 'looking for', os.sys.argv[1]
+
+#m = ia.get_movie(os.sys.argv[1])
+m = f.info(external_source = "imdb_id")['movie_results'][0]
+
+print 'found', m['title']
+
+movie = tmdb.Movies(m['id'])
+print movie.info()['runtime']
+
+f = review(title=m['title'], release_date = m['release_date'], runtime = movie.info()['runtime'], imdb = os.sys.argv[1].replace('tt',''), body = "Insert your review here", tmdb = m['id'], rating = 5)
+
+cast = []
+director = []
+tmdb_cast = movie.credits()['cast']
+tmdb_crew = movie.credits()['crew']
+for i in range(min(len(tmdb_cast), 5)):
+    c = tmdb_cast[i]
+    pid = c['id']
+    tmdb_person = tmdb.People(pid).info()
+    try:
+        pp = person.objects.get(imdb = tmdb_person['imdb_id'])
+        cast += [ pp ]
+    except:
+        print tmdb_person['name']
+        names = tmdb_person['name'].split()
+        dob='1990-01-01'
+        if 'birthday' in tmdb_person.keys() and tmdb_person['birthday'] is not None:
+            dob = tmdb_person['birthday']
+        else: print "no birthday found for ",tmdb_person['name']
+        g = 'M'
+        if tmdb_person['gender'] == 1: g = 'F'
+        print pid
+        print dob
+        pp = person(first_name = names[0], last_name = names[1], date_of_birth = dob, gender = g, imdb = pid)
+        pp.save()
+        cast += [ pp ]
+        
+for i in range(len(tmdb_crew)):
+    c = tmdb_crew[i]
+    if c['job'] != 'Director' : continue
+    pid = c['id']
+    tmdb_person = tmdb.People(pid).info()
+    
+    try:
+        pp = person.objects.get(imdb = pid)
+        director += [ pp ]
+    except:
+        print tmdb_person['name']
+        names = tmdb_person['name'].split()
+        dob = tmdb_person['birthday']
+        print dob
+        g = 'M'
+        if tmdb_person['gender'] == 1: g = 'F'
+        pp = person(first_name = names[0].decode('utf-8'), last_name = names[1].decode('utf-8'), date_of_birth = dob, gender = g, imdb = pid)
+        pp.save()
+        director += [ pp ]
+
+
+print 'about to save review'
+
+f.save()
+f.cast = cast
+f.director = director
