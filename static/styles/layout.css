@@ -1,0 +1,235 @@
+/*
+HTML 5 Template Name: Basic 76
+File: Layout CSS
+Author: OS Templates
+Author URI: http://www.os-templates.com/
+Licence: <a href="http://www.os-templates.com/template-terms">Website Template Licence</a>
+*/
+
+html{overflow-y:scroll;} /* Forces a scrollbar when the viewport is larger than the websites content - CSS3 */
+
+:root {
+    --main-font-family:"Lato", sans-serif;
+    --main-bg-color: #333333;
+    --secondary-color:#979797;
+    --font-color:#C0BAB6;
+    --secondary-font-color:#FF9900;
+    
+}
+
+
+
+body{margin:0; padding:0; font-size:13px; color:#919191; background-color:var(--main-bg-color); font-family:var(--main-font-family)}
+
+
+.clear:after{content:"."; display:block; height:0; clear:both; visibility:hidden; line-height:0;}
+.clear{display:block; clear:both;}
+html[xmlns] .clear{display:block;}
+* html .clear{height:1%;}
+
+a{outline:none; text-decoration:none;}
+
+code{font-weight:normal; font-style:normal; font-family:var(--main-font-family);}
+
+.fl_left{float:left;}
+.fl_right{float:right;}
+
+img{margin:0; padding:0; border:none; line-height:normal; vertical-align:middle;}
+.imgholder, .imgl, .imgr{padding:4px; border:1px solid #D6D6D6; text-align:center;}
+.imgl{float:left; margin:0 15px 15px 0; clear:left;}
+.imgr{float:right; margin:0 0 15px 15px; clear:right;}
+
+/*----------------------------------------------HTML 5 Overrides-------------------------------------*/
+
+address, article, aside, figcaption, figure, footer, header, nav, section{display:block; margin:0; padding:0;}
+
+q{display:block; padding:0 10px 8px 10px; color:--var(--secondary-color); background-color:#ECECEC; font-style:italic; line-height:normal;}
+q:before{content:'“ '; font-size:26px;}
+q:after{content:' „'; font-size:26px; line-height:0;}
+
+/* ----------------------------------------------Wrapper-------------------------------------*/
+
+div.wrapper{display:block; width:100%; margin:0; padding:0; text-align:left;}
+
+.row1, .row1 a{color:#C0BAB6; background-color:var(--main-bg-color);}
+.row2{color:--var(--secondary-color); background-color:#FFFFFF;}
+.row2 a{color:var(--secondary-color);}
+.row2 a:hover {color:#FF9900;}
+.row3, .row3 a{color:#919191; background-color:var(--main-bg-color);}
+
+/*----------------------------------------------Generalise-------------------------------------*/
+
+#header, #container, #footer{display:block; width:960px; margin:0 auto;}
+
+nav ul{margin:0; padding:0; list-style:none;}
+
+h1, h2, h3, h4, h5, h6{margin:0; padding:0; font-size:20px; font-weight:normal; font-style:normal; line-height:normal;}
+
+address{font-style:normal;}
+
+blockquote, q{display:block; padding:8px 10px; color:--var(--secondary-color); background-color:#ECECEC; font-style:italic; line-height:normal;}
+blockquote:before, q:before{content:'“ '; font-size:26px;}
+blockquote:after, q:after{content:' „'; font-size:26px; line-height:0;}
+
+form, fieldset, legend{margin:0; padding:0; border:none;}
+legend{display:none;}
+input, textarea, select{font-size:12px; font-family:Georgia,"Times New Roman",Times,serif;}
+
+.one_third, .two_third, .three_third{display:block; float:left; margin:0 30px 0 0;}
+.one_third{width:300px;}
+.two_third{width:630px;}
+.three_third{width:960px; float:none; margin-right:0; clear:both;}
+.lastbox{margin-right:0;}
+
+/*----------------------------------------------Header-------------------------------------*/
+
+#header{}
+
+
+/* a lot of messing here to align image with nav box with search */
+/* negative margin as it always starts at top of nav box for some reason */
+
+#header #hgroup{float:left;padding-left:0px;padding-bottom:0px;}
+#header #hgroup img{margin:-25px 25px 5px 25px;}
+#header #hgroup h1, #header #hgroup h2{font-weight:normal; text-transform:none;}
+#header #hgroup h1{font-size:36px;}
+#header #hgroup h2{font-size:13px;}
+
+#header form{margin:25px 20px 5px 20px; padding:0;float:right;}
+#header form input{dispay:block; width:150px; margin:0; padding:5px; background-color:var(--main-bg-color); border:1px solid #DEDEDE; font-family:var(--main-font-family); color:#DEDEDE;}
+#header form #sf_submit{float:right;width:25px; margin-left:5px;font-size:12px; font-weight:bold; text-transform:uppercase; cursor:pointer; font-family:var(--main-font-family); background-color:var(--main-bg-color);}
+#header form input[type=submit]{
+    background: url(/static/images/search.png);
+    background-size: 16px 16px;
+    background-position:45% 50%;
+    background-repeat:no-repeat
+}
+
+#header nav{display:block;width:100%; margin:30px 5px 5px 5px; padding:10px 0px 30px 0px; border:1px solid #DEDEDE; font-size:16px;} /*padding is tlbr */
+#header nav ul{display:inline;float:left;}
+#header nav li{display:inline; margin-right:25px; text-transform:uppercase;}
+#header nav li.last{margin-right:0;}
+#header nav li a{}
+#header nav li a:hover{color:#FF9900; background-color:#333333;}
+
+/*----------------------------------------------Content Area-------------------------------------*/
+
+#container{padding:0px 0;}
+#container section{display:block; width:100%; margin:0 0 30px 0; padding:0;}
+#container .last{margin:0;}
+#container .more{text-align:right;}
+ul { margin:0; padding:0; list-style:none;}
+ul {
+    list-style-position: inside;
+}
+
+/* ------Slider-----*/
+
+#container #slider{}
+#container #slider figure{}
+#container #slider figure img{float:left; width:630px; height:300px;}
+#container #slider figcaption{display:block; background-color:#333333; width:600px; height:200px; padding:10px}
+#container #slider figure figcaption a{color:#FF9900; background-color:#333333;}
+#container #slider figure h2{padding-bottom:8px; border-bottom:1px solid #DEDEDE;}
+#container #slider figure footer{}
+
+/* ------Main Content-----*/
+
+#container #homepage{display:block; width:100%; line-height:1.6em;}
+
+#container #homepage .services{margin:0; font-size:12px;}
+#container #homepage .services article{}
+#container #homepage .services article h2{margin-bottom:10px; text-transform:uppercase; font-size:14px; font-weight:bold;}
+#container #homepage figure {float:left;margin-right:0px;display:block;height:232px;position:relative;width:313px;}
+#container #homepage figure img{float:left; width:313px;height:232px;}
+#container #homepage figcaption{
+    height: 50px;
+    width: 305px;
+    color: #FFF;
+    padding: 4px;
+    font-family::var(--main-font-family); color:#919191;
+    position: absolute;
+    background-color:rgba(10,10,10,0.6);
+    display:block;
+    bottom:30px;
+}
+
+#container #homepage a:hover figure figcaption {
+    background-color:rgba(10,10,10,0.9);
+}
+#container #homepage .services article img{float:left; padding:4px; border:1px solid #D6D6D6;}
+#container #homepage .services article p{display:block; float:right; width:200px; margin:0; padding:0;}
+#container #homepage .services article footer{padding-top:10px; clear:both;}
+
+#container #homepage .spacer{display:block; width:100%; height:30px; margin:0; padding:0; clear:both;}
+
+img#profile { width: 200px; }
+
+table#t01 tr:nth-child(even) {
+    background-color: #eee;
+}
+table#t01 tr:nth-child(odd) {
+    background-color: #fff;
+}
+table#t01 th {
+    color: var(--font-color);
+    background-color: #333333;
+}
+table#t01 td, th {
+    padding:5px;
+}
+table#t01 {
+    padding:0px;
+    border: 2px;
+    width: 300px;
+}
+
+#container #homepage .feature{background-color:#eee;}
+#container #homepage .feature img{width:250px;float:left;margin:5px;}
+#container #homepage .feature h1{ padding:10px;background-color:var(--main-bg-color);width:100%;display:block;    box-sizing: border-box;
+margin-bottom:10px;}
+
+#container #homepage .preview{float:center;height:466px;width:630px;margin-right:0px;margin-bottom:20px; padding-botom:10px;}
+#container #homepage .preview img{width:630px;height:466px;}
+#container #homepage .preview figcaption#title{top:5%; width:610px;height:30px;padding:10px;padding-bottom:25px;}
+#container #homepage .preview figcaption#synopsis{bottom:0%; width:570px;height:45px;padding:30px;padding-top:10px;background-color:rgba(10,10,10,0.8);}
+#container #slider .quote {
+    height:200px;
+    width:280px;
+    left:600px;
+    float:left;
+    display:block;
+    font-family:var(--main-font-family); color:#919191;
+    font-size:20px;
+    font-style: italic;
+    margin-top:30px;
+    padding:10px;
+    margin-bottom:30px;
+}
+#container #homepage .synopsis{padding: 0px 0px 0px 0px;margin-top:30px;margin-bottom:100px;margin-left:0px;margin-right:0px;background-color:var(--main-bg-color);}
+#container #homepage .synopsis figure{margin:1px;}
+
+#container #homepage .mainsynopsis{background-color:rgba(50,50,50,1.0);margin-bottom:0px;}
+
+#container #homepage .mainsynopsis h1{font-size:20px;}
+
+
+/*------ review---*/
+article.review img{padding:10px;margin-top:10px;}
+div.review::first-letter {
+  color: var(--secondary-font-color);
+  float: left;
+  font-family: Georgia;
+  font-size: 75px;
+  line-height: 60px;
+  padding-top: 4px;
+  padding-right: 8px;
+  padding-left: 3px;
+}
+
+/*----------*/
+
+/*----------------------------------------------Footer-------------------------------------*/
+
+#footer{padding:20px 0;}
+#footer p{margin:0; padding:0;}
