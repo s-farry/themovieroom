@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'bcn=(90ce$9xz9gzvei1%+@1c%1iog0st2l^c8&k@g!7uau_90'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -39,8 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
-
-ROOT_URLCONF = 'moviereviews.urls'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -82,23 +80,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-'''
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'themovie_default',
-        'USER': 'themovie_sfarry',
-        'PASSWORD' : 'ParaFumu8',
-        'HOST': 'localhost',
-        'PORT' : '3306',
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-        },
-    }
-}
-'''
-
-
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
@@ -141,5 +122,5 @@ STATIC_URL = '/static/'
 STATIC_ROOT = "/home/themovie/public_html/static/"
 
 
-SESSION_COOKIE_DOMAIN = 'themovieroom.co.uk'
-SESSION_ENGINE='django.contrib.sessions.backends.db'
+#SESSION_COOKIE_DOMAIN = 'themovieroom.co.uk'
+#SESSION_ENGINE='django.contrib.sessions.backends.db'
