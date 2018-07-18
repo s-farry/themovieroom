@@ -11,7 +11,6 @@ from films.models import film, person, review
 
 
 tmdb.API_KEY = '8cf2bbd6e9aa1a32c36bd9bb68afa0c9'
-f = tmdb.Find()
 
 ncast = 3
 

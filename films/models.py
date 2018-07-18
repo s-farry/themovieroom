@@ -16,7 +16,7 @@ class person(models.Model):
         ('F', 'Female'),
     )
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
-    imdb = models.CharField(max_length = 8, default='')
+    imdb = models.CharField(max_length = 7, default='')
     image = models.ImageField(blank=True, upload_to = 'static/images')
     def age(self):
         today = date.today()
@@ -28,11 +28,11 @@ class person(models.Model):
 
 class film(models.Model):
     title = models.CharField(max_length=200)
-    release_date = models.DateField('Release Date')
+    release_date = models.DateField('Release Date', null = True)
     runtime = models.IntegerField(default = 0)
     director = models.ManyToManyField(person, related_name='director')
     cast = models.ManyToManyField(person, related_name='cast')
-    imdb = models.CharField(max_length = 8, default='')
+    imdb = models.CharField(max_length = 7, default='')
     tmdb = models.IntegerField(default = 0)
     def __str__(self):
         return self.title
