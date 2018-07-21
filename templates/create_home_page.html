@@ -1,0 +1,18 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block content %}
+{% if form %}
+<div id="content-main">
+    <form action="{% url 'update' %}" method="POST">
+        {% csrf_token %}
+        <table>
+        {{ form }}
+        </table>
+        <input type="submit" value="Submit" />
+    </form>
+</div>
+{% elif review %}
+Made new home page for {{ review.title }}
+{% endif %}
+{% endblock %}

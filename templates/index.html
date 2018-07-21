@@ -1,66 +1,66 @@
 
-{% extends "base.html" %}')
-f.write('{% load static %}')
+        {% extends "base.html" %}')
+        f.write('{% load static %}')
+        
+        
+        {% block title %}My amazing blog{% endblock %}
 
 
-{% block title %}My amazing blog{% endblock %}
+        {% block sidebar %}
 
+        <table id = "t01"><tbody>
+        <tr><th><img height=18px src = {% static 'images/incinema.png' %}>&nbsp;&nbsp;In Cinemas Now</th></tr>
+        <tr><td> <a href="{% url 'films:detail' 2 %}">Incredibles 2</a>&nbsp;&nbsp;★★★1/2</tr></td><tr><td> Mission: Impossible - Fallout</tr></td><tr><td> The First Purge</tr></td><tr><td> Skyscraper</tr></td><tr><td> Mamma Mia! Here We Go Again</tr></td><tr><td> Sicario: Day of the Soldado</tr></td><tr><td> Overboard</tr></td><tr><td> Escape Plan 2: Hades</tr></td>
+        <tr><th><img height=18px src = {% static 'images/comingsoon.png' %}>&nbsp;&nbsp;Coming Soon</th></tr>
+        <tr><td> Ant-Man and the Wasp</tr></td><tr><td> Hotel Transylvania 3: Summer Vacation</tr></td><tr><td> Unfriended: Dark Web</tr></td><tr><td> Chappaquiddick</tr></td><tr><td> Beirut</tr></td><tr><td> The Meg</tr></td><tr><td> I Can Only Imagine</tr></td><tr><td> The Darkest Minds</tr></td>
+        </tbody></table>
+        {% endblock %}
 
-{% block sidebar %}
+        
+        {% block image %}
+        {% endblock %}
+        
+        {% block body %}
+        <h1>Latest Reviews</h1> </br><div class = "mainsynopsis"><a href="{% url 'films:detail' 3 %}"><figure class = "preview"><img src = static/images/24291578_881088748733668_4483079099790078187_o.jpg><br>
+        <figcaption id = "title"> <h1> The Shape of Water (2017) </h1>
+        ★★★1/2
+        </figcaption>
+        <figcaption id = "synopsis">
+        At a top secret research facility in the 1960s, a lonely janitor forms a unique relationship with an amphibious creature that is being held in captivity.
+        </figcaption>
+        </figure></a>
+        </div>
 
-<table id = "t01"><tbody>
-<tr><th><img height=18px src = {% static 'images/incinema.png' %}>&nbsp;&nbsp;In Cinemas Now</th></tr>
-<tr><td> <a href="{% url 'films:detail' 2 %}">Avengers: Infinity War</a>&nbsp;&nbsp;★★★★</tr></td><tr><td> Rampage</tr></td><tr><td> A Quiet Place</tr></td><tr><td> Ready Player One</tr></td><tr><td> Blockers</tr></td><tr><td> Truth or Dare</tr></td><tr><td> Isle of Dogs</tr></td><tr><td> Love, Simon</tr></td>
-<tr><th><img height=18px src = {% static 'images/comingsoon.png' %}>&nbsp;&nbsp;Coming Soon</th></tr>
-<tr><td> Solo: A Star Wars Story</tr></td><tr><td> Deadpool 2</tr></td><tr><td> Submergence</tr></td><tr><td> Show Dogs</tr></td><tr><td> Adrift</tr></td><tr><td> The Breadwinner</tr></td><tr><td> Book Club</tr></td><tr><td> Samson</tr></td>
-</tbody></table>
-{% endblock %}
+        <div class = "synopsis">
+        {% for review in reviews %}
+        {% if review.id != 3 %}
+        <a href = "{% url 'films:detail' review.id %}">
+        <figure>
+        <img src = "{{review.image_small}}">
+        <figcaption>
+        {{review.title}} ({{review.release_date.year}})<br>
+        {% for star in review.stars  %}
+        {% if star == 1 %} ★
+        {% elif star == 0.5 %} 1/2
+        {% endif %}
+        {% endfor %}
+        </figcaption>
+        </figure>
+        </a>
+        {% endif %}
+        {% endfor %}
 
-
-{% block image %}
-{% endblock %}
-
-{% block body %}
-<div class = "mainsynopsis"><a href="{% url 'films:detail' 3 %}"><figure class = "preview"><img src = static/images/Loveless_dsc3805-1220x814.jpg><br>
-<figcaption id = "title"> <h1> Loveless (2017) </h1>
-★★1/2
-</figcaption>
-<figcaption id = "synopsis">
-An estranged Russian couple going through a brutal divorce both have new partners and want to start over until their 12-year-old son disappears after witnessing one of their fights.
-</figcaption>
-</figure></a>
-</div>
-
-<div class = "synopsis">
-  {% for review in reviews %}
-{% if review.id != 3 %}
-<a href = "{% url 'films:detail' review.id %}">
-<figure>
-  <img src = "{{review.image_small}}">
-<figcaption>
-{{review.title}} ({{review.release_date.year}})<br>
-{% for star in review.stars  %}
-{% if star == 1 %} ★
-{% elif star == 0.5 %} 1/2
-{% endif %}
-{% endfor %}
-</figcaption>
-</figure>
-</a>
-{% endif %}
-  {% endfor %}
-
-</div>
-<footer class="more"><a href="{% url 'films:index' %}">Read More &raquo;</a></footer>
-
-<div class = "features">
-  {% for feature in features %}
-<div class = "feature">
-<h1>{{feature.title}}</h1>
-<img src = "{{feature.image}}">
-{{feature.text}}
-</div>
-{% endfor %}
-</div>
-{% endblock %}
-<footer class="more"><a href="{% url 'films:index' %}">Read More &raquo;</a></footer>
+        </div>
+        <footer class="more"><a href="#">Read More &raquo;</a></footer>
+        
+        <h1> Latest Features </h1>
+        <div class = "features">
+        {% for feature in features %}
+        <div class = "feature">
+        <h1>{{feature.title}}</h1>
+        {{feature.text}}
+        </div>
+        {% endfor %}
+        </div>
+        {% endblock %}
+        

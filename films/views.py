@@ -14,4 +14,4 @@ def index(request):
 def detail(request, film_id):
     f = get_object_or_404(review, id=film_id)
     return render(request, 'film.html', {'review': f})
-    
+

@@ -1,0 +1,12 @@
+{% extends 'admin/base_site.html' %}
+{% load static %}
+{% block branding %}
+<img src="{% static 'images/themovieroom_trim.png' %}" alt="" height=50px><h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Django administration') }}</a></h1>
+{% for film in films.film.objects.all %}
+film.name
+{% endfor %}
+
+
+{% endblock %}
+
+

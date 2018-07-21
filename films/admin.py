@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 import tmdbsimple as tmdb
-tmdb.API_KEY = '8cf2bbd6e9aa1a32c36bd9bb68afa0c9'
+import os
+tmdb.API_KEY = os.environ['TMDB_API_KEY']
+
+
 
 from PIL import Image
 
