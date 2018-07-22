@@ -1,0 +1,60 @@
+
+/* LINKS */
+
+a:link, a:visited {
+    color: #C0BAB6;
+    text-decoration: none;
+}
+
+a:focus, a:hover {
+    color: #036;
+}
+
+a:focus {
+    text-decoration: underline;
+}
+
+
+a.section:link, a.section:visited {
+    color: #C0BAB6;
+    text-decoration: none;
+}
+
+a.section:focus, a.section:hover {
+    text-decoration: underline;
+}
+
+/* MODULES */
+
+.module h2, .module caption, .inline-group h2 {
+    margin: 0;
+    padding: 8px;
+    font-weight: 400;
+    font-size: 13px;
+    text-align: left;
+    background: #333333;
+    color: #C0BAB6;
+}
+
+
+
+/* HEADER */
+
+#header {
+    width: auto;
+    height: 45px;
+    padding: 10px 40px;
+    background: #333333;
+    line-height: 40px;
+    color: #C0BAB6;
+    overflow: hidden;
+}
+
+#header a:link, #header a:visited {
+    color: #fff;
+}
+
+#header a:focus , #header a:hover {
+    text-decoration: underline;
+}
+
