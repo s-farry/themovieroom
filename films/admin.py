@@ -182,9 +182,9 @@ class ReviewAdmin(admin.ModelAdmin):
 
 
 from .models import *
-admin.site.site_header = "The Movie Room"
+from themovieroom.admin import admin_site
 # Register your models here.
-admin.site.register(film)
-admin.site.register(review, ReviewAdmin)
-admin.site.register(person)
-admin.site.register(feature)
+admin_site.register(film)
+admin_site.register(review, ReviewAdmin)
+admin_site.register(person)
+admin_site.register(feature)

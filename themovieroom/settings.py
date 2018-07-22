@@ -25,13 +25,14 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', '192.168.1.114']
+ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', '192.168.1.114', 'themovieroom.co.uk']
 
 # Application definition
 
 INSTALLED_APPS = [
     'films.apps.FilmsConfig',
-    'django.contrib.admin',
+    'django.contrib.admin.apps.SimpleAdminConfig',
+    #'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
