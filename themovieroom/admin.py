@@ -24,7 +24,7 @@ import os
 tmdb.API_KEY = os.environ['TMDB_API_KEY']
 from PIL import Image
 
-def crop_image(path, home_page = False, loc = 3):
+def crop_image(path, home_page = False, loc = 0):
     im = Image.open(path)
     width, height = im.size   # Get dimensions
 

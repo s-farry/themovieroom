@@ -4,7 +4,7 @@
 {% block content %}
 {% if form %}
 <div id="content-main">
-    <form action="{% url 'update' %}" method="POST">
+    <form action="{% url 'admin:update' %}" method="POST">
         {% csrf_token %}
         <table>
         {{ form }}
