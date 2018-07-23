@@ -19,9 +19,13 @@ from . import views
 from .admin import *
 
 urlpatterns = [
+    url(r'^admin_site/', admin_site.urls),
     url(r'^$', views.index, name='index'),
     url(r'^search/$', views.SearchListView, name='SearchListView'),
     url(r'^person/(?P<person_id>[0-9]+)/$', views.persons, name='persons'),
+<<<<<<< HEAD
     url(r'^admin/', admin_site.urls),
+=======
+>>>>>>> fc2e4eaa6591239ba2c3efd8a7fa7869147bd0c0
     url(r'^films/', include('films.urls')),
 ]

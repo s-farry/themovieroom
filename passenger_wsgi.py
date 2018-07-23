@@ -8,8 +8,11 @@ sys.path.insert(0, os.path.dirname(__file__))
 wsgi = imp.load_source('wsgi', 'themovieroom/wsgi.py')
 application = wsgi.application
 
+#a2 specific problem
+# https://stackoverflow.com/questions/49594955/django-1-11-on-passenger-wsgi-not-routing-post-request
+
 # Set this to your root
-SCRIPT_NAME = 'admin'
+SCRIPT_NAME = ''
 
 class PassengerPathInfoFix(object):
     """
@@ -19,7 +22,7 @@ class PassengerPathInfoFix(object):
         self.app = app
 
     def __call__(self, environ, start_response):
-        from urllib.parse import unquote
+        from urlparse import unquote
         environ['SCRIPT_NAME'] = SCRIPT_NAME
 
         request_uri = unquote(environ['REQUEST_URI'])
@@ -29,5 +32,5 @@ class PassengerPathInfoFix(object):
         return self.app(environ, start_response)
 
 
-application = get_wsgi_application()
+#application = get_wsgi_application()
 application = PassengerPathInfoFix(application)
