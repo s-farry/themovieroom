@@ -58,3 +58,7 @@ a.section:focus, a.section:hover {
     text-decoration: underline;
 }
 
+
+div.breadcrumbs {
+    background: #333333;
+}
