@@ -1,0 +1,89 @@
+{% extends "base.html" %}')
+{% load static %}
+{% load common %}
+        
+{% block title %}My amazing blog{% endblock %}
+
+
+{% block sidebar %}
+
+<table id = "t01"><tbody>
+    <tr><th><img height=18px src = {% static 'images/incinema.png' %}>&nbsp;&nbsp;In Cinemas Now</th></tr>
+    <tr><td> {% block cinema1 %}{% endblock %}</td></tr>
+    <tr><td> {% block cinema2 %}{% endblock %}</td></tr>
+    <tr><td> {% block cinema3 %}{% endblock %}</td></tr>
+    <tr><td> {% block cinema4 %}{% endblock %}</td></tr>
+    <tr><td> {% block cinema5 %}{% endblock %}</td></tr>
+    <tr><td> {% block cinema6 %}{% endblock %}</td></tr>
+    <tr><td> {% block cinema7 %}{% endblock %}</td></tr>
+    <tr><td> {% block cinema8 %}{% endblock %}</td></tr>
+    
+
+    <tr><th><img height=18px src = {% static 'images/comingsoon.png' %}>&nbsp;&nbsp;Coming Soon</th></tr>
+    <tr><td> {% block coming1 %}{% endblock %}</td></tr>
+    <tr><td> {% block coming2 %}{% endblock %}</td></tr>
+    <tr><td> {% block coming3 %}{% endblock %}</td></tr>
+    <tr><td> {% block coming4 %}{% endblock %}</td></tr>
+    <tr><td> {% block coming5 %}{% endblock %}</td></tr>
+    <tr><td> {% block coming6 %}{% endblock %}</td></tr>
+    <tr><td> {% block coming7 %}{% endblock %}</td></tr>
+    <tr><td> {% block coming8 %}{% endblock %}</td></tr>
+</tbody></table>
+{% endblock %}
+{% block image %}
+{% endblock %}
+{% block body %}
+
+
+
+{% for review in reviews %}
+{% if review.id == mainid %}
+
+<div class = "mainsynopsis"><a href="{% url 'films:detail' mainid %}"><figure class = "preview"><img src = "{{ review.image_small }}"><br>
+      <figcaption id = "title"> <h1> {{review.title}} ({{review.release_date.year}}) </h1>
+        {% for star in review.stars  %}
+        {% if star == 1 %} ★
+        {% elif star == 0.5 %} 1/2
+        {% endif %}
+        {% endfor %}
+	
+      </figcaption>
+      <figcaption id = "synopsis">
+        {{review.synopsis}}
+      </figcaption>
+  </figure></a>
+</div>
+{% endif %}
+{% endfor %}
+<div class = "synopsis">
+  
+  {% for review in reviews %}
+  {% if review.id != mainid  %}
+  <a href = "{% url 'films:detail' review.id %}">
+    <figure>
+      <img src = "{{review.image_small}}">
+      <figcaption>
+        {{review.title}} ({{review.release_date.year}})<br>
+        {% for star in review.stars  %}
+        {% if star == 1 %} ★
+        {% elif star == 0.5 %} 1/2
+        {% endif %}
+        {% endfor %}
+      </figcaption>
+    </figure>
+  </a>
+  {% endif %}
+  {% endfor %}
+  
+</div>
+<footer class="more"><a href="#">Read More &raquo;</a></footer>
+
+<div class = "features">
+  {% for feature in features %}
+  <div class = "feature">
+    <h1>{{feature.title}}</h1>
+    {{feature.text}}
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

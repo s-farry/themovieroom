@@ -1,66 +1,54 @@
-
-        {% extends "base.html" %}')
-        f.write('{% load static %}')
-        
-        
-        {% block title %}My amazing blog{% endblock %}
-
-
-        {% block sidebar %}
-
-        <table id = "t01"><tbody>
-        <tr><th><img height=18px src = {% static 'images/incinema.png' %}>&nbsp;&nbsp;In Cinemas Now</th></tr>
-        <tr><td> <a href="{% url 'films:detail' 2 %}">Incredibles 2</a>&nbsp;&nbsp;★★★1/2</tr></td><tr><td> Mission: Impossible - Fallout</tr></td><tr><td> The First Purge</tr></td><tr><td> Skyscraper</tr></td><tr><td> Mamma Mia! Here We Go Again</tr></td><tr><td> Sicario: Day of the Soldado</tr></td><tr><td> Overboard</tr></td><tr><td> Escape Plan 2: Hades</tr></td>
-        <tr><th><img height=18px src = {% static 'images/comingsoon.png' %}>&nbsp;&nbsp;Coming Soon</th></tr>
-        <tr><td> Ant-Man and the Wasp</tr></td><tr><td> Hotel Transylvania 3: Summer Vacation</tr></td><tr><td> Unfriended: Dark Web</tr></td><tr><td> Chappaquiddick</tr></td><tr><td> Beirut</tr></td><tr><td> The Meg</tr></td><tr><td> I Can Only Imagine</tr></td><tr><td> The Darkest Minds</tr></td>
-        </tbody></table>
-        {% endblock %}
-
-        
-        {% block image %}
-        {% endblock %}
-        
-        {% block body %}
-        <h1>Latest Reviews</h1> </br><div class = "mainsynopsis"><a href="{% url 'films:detail' 3 %}"><figure class = "preview"><img src = static/images/24291578_881088748733668_4483079099790078187_o.jpg><br>
-        <figcaption id = "title"> <h1> The Shape of Water (2017) </h1>
-        ★★★1/2
-        </figcaption>
-        <figcaption id = "synopsis">
-        At a top secret research facility in the 1960s, a lonely janitor forms a unique relationship with an amphibious creature that is being held in captivity.
-        </figcaption>
-        </figure></a>
-        </div>
-
-        <div class = "synopsis">
-        {% for review in reviews %}
-        {% if review.id != 3 %}
-        <a href = "{% url 'films:detail' review.id %}">
-        <figure>
-        <img src = "{{review.image_small}}">
-        <figcaption>
-        {{review.title}} ({{review.release_date.year}})<br>
-        {% for star in review.stars  %}
-        {% if star == 1 %} ★
-        {% elif star == 0.5 %} 1/2
-        {% endif %}
-        {% endfor %}
-        </figcaption>
-        </figure>
-        </a>
-        {% endif %}
-        {% endfor %}
-
-        </div>
-        <footer class="more"><a href="#">Read More &raquo;</a></footer>
-        
-        <h1> Latest Features </h1>
-        <div class = "features">
-        {% for feature in features %}
-        <div class = "feature">
-        <h1>{{feature.title}}</h1>
-        {{feature.text}}
-        </div>
-        {% endfor %}
-        </div>
-        {% endblock %}
-        
+{% extends "base_index.html" %}
+{% load common %}
+{% block cinema0 %}
+Jurassic World: Fallen Kingdom
+{% endblock %}
+{% block cinema1 %}
+<a href="{% url 'films:detail' 2 %}">Incredibles 2</a>&nbsp;&nbsp;★★★1/2
+{% endblock %}
+{% block cinema2 %}
+The First Purge
+{% endblock %}
+{% block cinema3 %}
+Skyscraper
+{% endblock %}
+{% block cinema4 %}
+Overboard
+{% endblock %}
+{% block cinema5 %}
+Mamma Mia! Here We Go Again
+{% endblock %}
+{% block cinema6 %}
+Escape Plan 2: Hades
+{% endblock %}
+{% block cinema7 %}
+Super Troopers 2
+{% endblock %}
+{% block coming0 %}
+Mission: Impossible - Fallout
+{% endblock %}
+{% block coming1 %}
+Ant-Man and the Wasp
+{% endblock %}
+{% block coming2 %}
+Hotel Transylvania 3: Summer Vacation
+{% endblock %}
+{% block coming3 %}
+Unfriended: Dark Web
+{% endblock %}
+{% block coming4 %}
+The Meg
+{% endblock %}
+{% block coming5 %}
+I Can Only Imagine
+{% endblock %}
+{% block coming6 %}
+Teen Titans Go! To the Movies
+{% endblock %}
+{% block coming7 %}
+Beirut
+{% endblock %}
+{% block body %}
+{% assign mainid 4 %}
+{{block.super}}
+{% endblock %}
