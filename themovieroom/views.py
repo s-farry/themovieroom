@@ -24,6 +24,9 @@ def persons(request, person_id):
     f = get_object_or_404(person, id=person_id)
     return render(request, 'person.html', {'person': f})
 
+def page_not_found(request):
+    return render(request, '404.html')
+
 def SearchListView(request):
     query = request.GET.get('search')
     film_results = film.objects.all().filter(title__icontains=query)
@@ -65,9 +68,9 @@ def update(request):
         f.write('{% extends "base_index.html" %}\n')
         f.write('{% load common %}\n')
         for i,m in enumerate(outnow):
-            print_movie('cinema{}'.format(i),f,m)
+            print_movie('cinema{}'.format(i+1),f,m)
         for i,m in enumerate(coming):
-            print_movie('coming{}'.format(i),f,m)
+            print_movie('coming{}'.format(i+1),f,m)
         f.write('{% block body %}\n')
         f.write('{% assign mainid '+str(film)+' %}\n')
         f.write('{{block.super}}\n')

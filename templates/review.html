@@ -38,7 +38,7 @@
     {% endfor %}
     </li>
 </ul>
-<div class = "review">{{review.body}}</div>
+<div class = "review">{{review.body | safe}}</div>
 {% endblock %}
 
 

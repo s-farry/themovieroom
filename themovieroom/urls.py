@@ -23,5 +23,6 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^search/$', views.SearchListView, name='SearchListView'),
     url(r'^person/(?P<person_id>[0-9]+)/$', views.persons, name='persons'),
-    url(r'^films/', include('films.urls')),
+    url(r'^reviews/', include('films.urls')),
 ]
+handler404 = 'themovieroom.views.page_not_found'

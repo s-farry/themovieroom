@@ -9,9 +9,9 @@ from django.shortcuts import get_object_or_404, render
 from .models import review, film
 
 def index(request):
-    return render(request, 'films.html', {'films' : film.objects.all()})
+    return render(request, 'reviews.html', {'films' : review.objects.all()})
 
-def detail(request, film_id):
-    f = get_object_or_404(review, id=film_id)
-    return render(request, 'film.html', {'review': f})
+def detail(request, review_id):
+    r = get_object_or_404(review, id=review_id)
+    return render(request, 'review.html', {'review': r})
 
