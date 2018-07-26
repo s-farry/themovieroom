@@ -1,7 +1,7 @@
 {% extends 'admin/index.html' %}
 
-{% block breadcrumbs %}
-<div class="breadcrumbs">
+{% block content %}
 <a href="{% url 'admin:update' %}">Update Home Page</a></caption>
-</div>
+
+{{block.super}}
 {% endblock %}

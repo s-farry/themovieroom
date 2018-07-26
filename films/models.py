@@ -5,6 +5,7 @@ from django.db import models
 from django.utils import timezone
 from datetime import date
 from math import floor, ceil
+import ast
 
 # Create your models here.
 class person(models.Model):
@@ -72,6 +73,8 @@ class review(film):
             for i in range(int(5 - ceil(rating))):
                 starred += [ 0 ]
         return starred
+    def print_review(self):
+        return self.body
 
 class feature(models.Model):
     title = models.CharField(max_length = 200, default = "Feature")

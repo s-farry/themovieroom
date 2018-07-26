@@ -19,23 +19,14 @@
 <body>
 <div class="wrapper row1">
   <header id="header" class="clear">
-<!---    <nav> 
-      <ul>
-        <li><a href="{% url 'index' %}">Home</a></li>
-        <li><a href="">Features</a></li>
-        <li><a href="{% url 'films:index' %}">Reviews</a></li>
-      </ul>
-    </nav> -->
     <div id="hgroup">
-      <!-- <h1><a href="#">The Movie Room</a></h1>
-      %<h2>All about the movies</h2>-->
          <img src="{% static 'images/themovieroom_trim.png' %}" alt="" height=100px>
     </div>
     <nav>
       <ul>
         <li><a href="{% url 'index' %}">Home</a></li>
-        <li><a href="">Features</a></li>
         <li><a href="{% url 'films:index' %}">Reviews</a></li>
+        <li><a href="">Features</a></li>
       </ul>
     <form action="{% url 'SearchListView' %}" method="get">
       <fieldset>
