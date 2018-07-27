@@ -40,7 +40,7 @@ def SearchListView(request):
         query2.add(Q(first_name__icontains = last, last_name__icontains = first), Q.OR)   
     person_results = person.objects.filter(query2)
     
-    return render(request, 'films.html', {'films':film_results, 'persons': person_results})
+    return render(request, 'reviews.html', {'films':film_results, 'persons': person_results})
 
 from .forms import UpdateHome
 
