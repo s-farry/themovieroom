@@ -26,3 +26,4 @@ urlpatterns = [
     url(r'^reviews/', include('films.urls')),
 ]
 handler404 = 'themovieroom.views.page_not_found'
+handler500 = 'themovieroom.views.page_not_found'

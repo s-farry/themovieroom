@@ -1,53 +1,21 @@
 {% extends "base_index.html" %}
 {% load common %}
-{% block cinema0 %}
-Jurassic World: Fallen Kingdom
-{% endblock %}
-{% block cinema1 %}
-<a href="{% url 'films:detail' 2 %}">Incredibles 2</a>&nbsp;&nbsp;★★★1/2
-{% endblock %}
-{% block cinema2 %}
-The First Purge
-{% endblock %}
-{% block cinema3 %}
-Skyscraper
-{% endblock %}
-{% block cinema4 %}
-Overboard
-{% endblock %}
-{% block cinema5 %}
-Mamma Mia! Here We Go Again
-{% endblock %}
-{% block cinema6 %}
-Escape Plan 2: Hades
-{% endblock %}
-{% block cinema7 %}
-Super Troopers 2
-{% endblock %}
-{% block coming0 %}
-Mission: Impossible - Fallout
-{% endblock %}
-{% block coming1 %}
-Ant-Man and the Wasp
-{% endblock %}
-{% block coming2 %}
-Hotel Transylvania 3: Summer Vacation
-{% endblock %}
-{% block coming3 %}
-Unfriended: Dark Web
-{% endblock %}
-{% block coming4 %}
-The Meg
-{% endblock %}
-{% block coming5 %}
-I Can Only Imagine
-{% endblock %}
-{% block coming6 %}
-Teen Titans Go! To the Movies
-{% endblock %}
-{% block coming7 %}
-Beirut
-{% endblock %}
+{% block cinema1 %}Mission: Impossible - Fallout{% endblock %}
+{% block cinema2 %}<a href="{% url 'films:detail' 2 %}">Incredibles 2</a>&nbsp;&nbsp;★★★1/2{% endblock %}
+{% block cinema3 %}The First Purge{% endblock %}
+{% block cinema4 %}Hotel Transylvania 3: Summer Vacation{% endblock %}
+{% block cinema5 %}Skyscraper{% endblock %}
+{% block cinema6 %}Mamma Mia! Here We Go Again{% endblock %}
+{% block cinema7 %}Overboard{% endblock %}
+{% block cinema8 %}Sicario: Day of the Soldado{% endblock %}
+{% block coming1 %}Ant-Man and the Wasp{% endblock %}
+{% block coming2 %}The Equalizer 2{% endblock %}
+{% block coming3 %}I Can Only Imagine{% endblock %}
+{% block coming4 %}Unfriended: Dark Web{% endblock %}
+{% block coming5 %}Teen Titans Go! To the Movies{% endblock %}
+{% block coming6 %}The Meg{% endblock %}
+{% block coming7 %}The Spy Who Dumped Me{% endblock %}
+{% block coming8 %}Beirut{% endblock %}
 {% block body %}
 {% assign mainid 4 %}
 {{block.super}}
