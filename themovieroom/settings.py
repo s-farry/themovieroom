@@ -145,11 +145,13 @@ TINYMCE_DEFAULT_CONFIG = {
     'statusbar': True,
     'content_css' : '/static/styles/layout.css',
     'body_class' : 'review',
-    'content_style' : 'div {margin: 10px; border: 5px solid red; padding: 3px; class : "review"}',
+    'content_style' : 'div {margin: 10px; border: 5px solid red; padding: 3px;}',
     'style_formats': '{title: "test, selector: "div", classes: "review"}'
     }
 
 
+SESSION_COOKIE_DOMAIN = 'themovieroom.co.uk'
+SESSION_ENGINE='django.contrib.sessions.backends.db'
 
-#SESSION_COOKIE_DOMAIN = 'themovieroom.co.uk'
-#SESSION_ENGINE='django.contrib.sessions.backends.db'
+#to ensure we can see the uploaded files
+FILE_UPLOAD_PERMISSIONS = 0644

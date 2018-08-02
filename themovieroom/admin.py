@@ -53,11 +53,11 @@ def crop_image(path, home_page = False, loc = 0):
     bottom = (height + new_height)/2
     
     if loc == '1':
-        print 'cropping to left'
+        #print 'cropping to left'
         left = 0
         right = new_width
     elif loc == '2':
-        print 'cropping to right'
+        #print 'cropping to right'
         left = width - new_width
         right = width
     elif loc == '3':
@@ -94,6 +94,8 @@ def crop_image(path, home_page = False, loc = 0):
         bottom = height
 
     new_im = im.crop((left, top, right, bottom))
+    if new_width > 600:
+        new_im = new_im.resize( (600, new_height * 600 / new_width), Image.ANTIALIAS)
     new_im.save(path)
 
 from django import forms
