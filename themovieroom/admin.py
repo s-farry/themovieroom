@@ -95,7 +95,7 @@ def crop_image(path, home_page = False, loc = 0):
 
     new_im = im.crop((left, top, right, bottom))
     if new_width > 600:
-        new_im = new_im.resize( (600, new_height * 600 / new_width), Image.ANTIALIAS)
+        new_im = new_im.resize( (600, int(new_height * 600 / new_width)), Image.ANTIALIAS)
     new_im.save(path)
 
 from django import forms
@@ -191,8 +191,10 @@ class ReviewAdmin(admin.ModelAdmin):
             self.cast, self.director = self.add_people(self.tmdb_movie, request)
             for c in self.cast: obj.cast.add(c)
             for d in self.director: obj.director.add(d)
-        if obj.image_small: crop_image(obj.image_small.path, home_page = True)
-        if obj.image: crop_image(obj.image.path, home_page = False)
+        if not change or 'image_small' in form.changed_data:
+            crop_image(obj.image_small.path, home_page = True)
+        if not change or 'image' in form.changed_data:
+            crop_image(obj.image.path, home_page = False)
 
 admin_site = MyAdminSite()
 from django.contrib.auth.models import User
