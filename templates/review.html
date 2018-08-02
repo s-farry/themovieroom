@@ -1,13 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
 
-
 {% block title %}{{ review.title }}{% endblock %}
-
 
 {% block image %}
 <article class = "review">
-<figure><img src="/{{review.image }}" alt=""></figure>
+<figure><img src="{{ review.image.url }}" alt=""></figure>
 </article>
   <article class = "quote" >
 "{{review.quote}}"</article>

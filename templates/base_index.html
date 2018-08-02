@@ -39,7 +39,7 @@
 {% for review in reviews %}
 {% if review.id == mainid %}
 
-<div class = "mainsynopsis"><a href="{% url 'films:detail' mainid %}"><figure class = "preview"><img src = "{{ review.image_small }}"><br>
+<div class = "mainsynopsis"><a href="{% url 'films:detail' mainid %}"><figure class = "preview"><img src = "{{ review.image_small.url }}"><br>
       <figcaption id = "title"> <h1> {{review.title}} ({{review.release_date.year}}) </h1>
         {% for star in review.stars  %}
         {% if star == 1 %} ★
@@ -61,7 +61,7 @@
   {% if review.id != mainid  %}
   <a href = "{% url 'films:detail' review.id %}">
     <figure>
-      <img src = "{{review.image_small}}">
+      <img src = "{{review.image_small.url}}">
       <figcaption>
         {{review.title}} ({{review.release_date.year}})<br>
         {% for star in review.stars  %}

@@ -18,7 +18,7 @@ class person(models.Model):
     )
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     imdb = models.CharField(max_length = 7, default='')
-    image = models.ImageField(blank=True, upload_to = 'static/images')
+    image = models.ImageField(blank=True, upload_to = 'images')
     def age(self):
         today = date.today()
         return today.year - self.date_of_birth.year - ((today.month, today.day) < (self.date_of_birth.month, self.date_of_birth.day))
@@ -58,8 +58,8 @@ class review(film):
         (10, 5.0),
     )
     rating = models.IntegerField(choices = RATING_CHOICES)
-    image = models.ImageField(blank=True, upload_to = 'static/images')
-    image_small = models.ImageField(blank=True, upload_to = 'static/images')
+    image = models.ImageField(blank=True, upload_to = 'images')
+    image_small = models.ImageField(blank=True, upload_to = 'images')
     def __str__(self):
         return self.title
     def stars(self):
@@ -80,8 +80,8 @@ class feature(models.Model):
     title = models.CharField(max_length = 200, default = "Feature")
     text = models.CharField(max_length = 10000)
     synopsis = models.CharField(max_length = 1000, default = '')
-    image = models.ImageField(blank=True, upload_to = 'static/images')
-    image_small = models.ImageField(blank=True, upload_to = 'static/images')
+    image = models.ImageField(blank=True, upload_to = 'images')
+    image_small = models.ImageField(blank=True, upload_to = 'images')
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
     def name(self):              # __unicode__ on Python 2

@@ -98,10 +98,17 @@ def crop_image(path, home_page = False, loc = 0):
 
 from django import forms
 from films.models import *
+#from froala_editor.widgets import FroalaEditor
+from tinymce.widgets import TinyMCE
+
 
 class ReviewAdminForm(forms.ModelForm):
     imdb = forms.CharField(max_length=9)
-    body = forms.CharField(max_length= 10000, widget = forms.Textarea(attrs = {'rows' : '50', 'cols' : '90'}), label='Review')
+    #body = forms.CharField(max_length= 10000, widget = forms.Textarea(attrs = {'rows' : '50', 'cols' : '90'}), label='Review')
+    #body = forms.CharField(max_length= 10000, widget = FroalaEditor(options={'toolbarInline': True, 'inlineMode' : True}), label='Review')
+    body = forms.CharField(max_length= 10000, widget = TinyMCE(attrs = {'rows' : '30', 'cols' : '30'}), label='Review')
+
+    
     synopsis = forms.CharField(max_length= 1000, widget = forms.Textarea(attrs = {'rows' : '10', 'cols' : '90'}))
     quote = forms.CharField(max_length= 500, widget = forms.Textarea(attrs = {'rows' : '2', 'cols' : '90'}))
     class Meta:
@@ -167,15 +174,16 @@ class ReviewAdmin(admin.ModelAdmin):
 
 
     def save_model(self, request, obj, form, change):
-        if 'tt' in obj.imdb: obj.imdb = obj.imdb.strip('tt')
-        f = tmdb.Find('tt'+obj.imdb)
-        m = f.info(external_source = "imdb_id")['movie_results'][0]
-        self.tmdb_movie = tmdb.Movies(m['id'])
-        obj.title = m['title']
-        obj.tmdb = m['id']
-        obj.runtime = self.tmdb_movie.info()['runtime']
-        obj.release_date = m['release_date']
-        self.message_user(request, 'saving %s as %s'%(obj.imdb,obj.title))
+        if not change:
+            if 'tt' in obj.imdb: obj.imdb = obj.imdb.strip('tt')
+            f = tmdb.Find('tt'+obj.imdb)
+            m = f.info(external_source = "imdb_id")['movie_results'][0]
+            self.tmdb_movie = tmdb.Movies(m['id'])
+            obj.title = m['title']
+            obj.tmdb = m['id']
+            obj.runtime = self.tmdb_movie.info()['runtime']
+            obj.release_date = m['release_date']
+            self.message_user(request, 'Saving imdb id tt%s as %s'%(obj.imdb,obj.title))
         super(ReviewAdmin, self).save_model(request, obj, form, change)
         if not change:
             self.cast, self.director = self.add_people(self.tmdb_movie, request)

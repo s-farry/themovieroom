@@ -24,6 +24,15 @@ urlpatterns = [
     url(r'^search/$', views.SearchListView, name='SearchListView'),
     url(r'^person/(?P<person_id>[0-9]+)/$', views.persons, name='persons'),
     url(r'^reviews/', include('films.urls')),
+    url(r'^tinymce/', include('tinymce.urls')),
+
 ]
 handler404 = 'themovieroom.views.page_not_found'
 handler500 = 'themovieroom.views.page_not_found'
+
+
+from django.conf import settings
+
+if settings.DEBUG:
+    from django.conf.urls.static import static
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

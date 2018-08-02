@@ -23,7 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+if 'DJANGO_DEBUG' in os.environ and os.environ['DJANGO_DEBUG'] == "1":
+    DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', '192.168.1.114','themovieroom.co.uk']
 
@@ -33,6 +35,7 @@ INSTALLED_APPS = [
     'films.apps.FilmsConfig',
     'django.contrib.admin.apps.SimpleAdminConfig',
     #'django.contrib.admin',
+    'tinymce',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -121,6 +124,31 @@ STATICFILES_DIRS = [
 
 STATIC_URL = '/static/'
 STATIC_ROOT = "/home/themovie/public_html/static/"
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(os.environ["HOME"], "public_html/media/")
+
+#TINYMCE_JS_URL = os.path.join(STATIC_URL, "js/tinymce/tinymce.js")
+#TINYMCE_JS_ROOT = os.path.join(STATIC_URL, "js/tinymce")
+#TINYMCE_DEFAULT_CONFIG = {'theme' : 'inlite', 'relative_urls' : False,
+#                          'plugins': "table,paste,searchreplace,image"}
+
+TINYMCE_DEFAULT_CONFIG = {
+    'height': 360,
+    'width': 800,
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 20,
+    'selector': 'textarea',
+    'theme': 'advanced',
+    'contextmenu': 'formats | link image',
+    'menubar': True,
+    'statusbar': True,
+    'content_css' : '/static/styles/layout.css',
+    'body_class' : 'review',
+    'content_style' : 'div {margin: 10px; border: 5px solid red; padding: 3px; class : "review"}',
+    'style_formats': '{title: "test, selector: "div", classes: "review"}'
+    }
+
 
 
 #SESSION_COOKIE_DOMAIN = 'themovieroom.co.uk'
