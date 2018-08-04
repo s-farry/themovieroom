@@ -108,7 +108,7 @@ class ReviewAdminForm(forms.ModelForm):
     imdb = forms.CharField(max_length=9)
     #body = forms.CharField(max_length= 10000, widget = forms.Textarea(attrs = {'rows' : '50', 'cols' : '90'}), label='Review')
     #body = forms.CharField(max_length= 10000, widget = FroalaEditor(options={'toolbarInline': True, 'inlineMode' : True}), label='Review')
-    body = forms.CharField(max_length= 10000, widget = TinyMCE(attrs = {'rows' : '30', 'cols' : '30', 'content_style' : "color:#FFFF00"}), label='Review')
+    body = forms.CharField(max_length= 10000, widget = TinyMCE(attrs = {'rows' : '30', 'cols' : '30', 'content_style' : "color:#FFFF00", 'body_class': 'review', 'body_id': 'review',}), label='Review')
 
     synopsis = forms.CharField(max_length= 1000, widget = forms.Textarea(attrs = {'rows' : '10', 'cols' : '90'}))
     quote = forms.CharField(max_length= 500, widget = forms.Textarea(attrs = {'rows' : '2', 'cols' : '90'}))

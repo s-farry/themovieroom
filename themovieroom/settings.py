@@ -144,7 +144,8 @@ TINYMCE_DEFAULT_CONFIG = {
     'menubar': True,
     'statusbar': True,
     'content_css' : '/static/styles/layout.css',
-    'body_class' : 'homepage',
+    'body_class' : 'tinymce',
+    'body_id' : 'tinymce',
     'content_style' : "div {margin: 10px; border: 5px solid red; padding: 3px}",
     'style_formats': '{title: "test, selector: "div", classes: "review"}'
     }

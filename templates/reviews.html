@@ -10,12 +10,13 @@
 {% endblock %}
 
 {% block body %}
-<ul>{% if films.count > 0 %}
-<h2>Reviews</h2>
-  {% for film in films %}
-  <li> <a href = "{% url 'films:detail' film.id %}">{{film.title}} ({{film.release_date.year}})</a></li>
+{% if films.count > 0 %}
+<table id="t02">
+<tr><th><h2>Reviews</h2></th></tr>
+{% for film in films %}
+  <tr><td> <a href = "{% url 'films:detail' film.id %}">{{film.title}} ({{film.release_date.year}})</a></td></tr>
   {% endfor %}
-</ul>
+</table>
 {% endif %}
 <ul>{% if persons.count > 0 %}
 <h2>People</h2>
@@ -37,5 +38,5 @@ Directed
   {% endfor %}
 </ul>
 {% endif %}
-<footer class="more"><a href="#">Read More &raquo;</a></footer>
+<!-- <footer class="more"><a href="#">Read More &raquo;</a></footer> -->
 {% endblock %}
