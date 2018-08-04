@@ -117,6 +117,8 @@ class ReviewAdminForm(forms.ModelForm):
         fields = ['imdb', 'synopsis', 'body', 'quote', 'rating', 'image', 'image_small']
         model = review
 
+from django.utils import timezone
+
 class ReviewAdmin(admin.ModelAdmin):
     list_display = ['title', 'status']
     actions = ['make_published']
@@ -124,7 +126,9 @@ class ReviewAdmin(admin.ModelAdmin):
     form = ReviewAdminForm
     def make_published(self, request, queryset):
         rows_updated = queryset.update(status='p')
-
+        for obj in queryset:
+            obj.status='p'
+            obj.published_data = timezone.now
         if rows_updated == 1:
             message_bit = "1 review was"
         else:
