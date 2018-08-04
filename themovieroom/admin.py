@@ -33,7 +33,7 @@ def crop_image(path, home_page = False, loc = 0):
     new_height = height
     r = 1.0
     if home_page:
-        r_new = 630.0 / 466.0
+        r_new = 630.0 / 400.0
     else:
         r_new = 2.1
     r = float(width) / height
