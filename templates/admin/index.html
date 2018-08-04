@@ -1,7 +1,14 @@
 {% extends 'admin/index.html' %}
 
 {% block content %}
-<a href="{% url 'admin:update' %}">Update Home Page</a></caption>
-
+<div class="module">
+<table>
+<!--<caption><a href="{% url 'admin:update' %}" class="section">Update Home Page</a></caption> -->
+<tr class="model"><th></th></tr>
+<tr class="model">
+<th scope="row"><a href="{% url 'admin:update' %}">Update Home Page</a></th>
+</tr>
+</table>
+</div>
 {{block.super}}
 {% endblock %}

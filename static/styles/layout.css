@@ -226,6 +226,17 @@ div.review::first-letter {
   padding-right: 8px;
   padding-left: 3px;
 }
+.tinymce::first-letter {
+  color: var(--secondary-font-color);
+  float: left;
+  font-family: Georgia;
+  font-size: 75px;
+  line-height: 60px;
+  padding-top: 4px;
+  padding-right: 8px;
+  padding-left: 3px;
+}
+
 
 /*----------*/
 

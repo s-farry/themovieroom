@@ -108,7 +108,7 @@ class ReviewAdminForm(forms.ModelForm):
     imdb = forms.CharField(max_length=9)
     #body = forms.CharField(max_length= 10000, widget = forms.Textarea(attrs = {'rows' : '50', 'cols' : '90'}), label='Review')
     #body = forms.CharField(max_length= 10000, widget = FroalaEditor(options={'toolbarInline': True, 'inlineMode' : True}), label='Review')
-    body = forms.CharField(max_length= 10000, widget = TinyMCE(attrs = {'rows' : '30', 'cols' : '30'}), label='Review')
+    body = forms.CharField(max_length= 10000, widget = TinyMCE(attrs = {'rows' : '30', 'cols' : '30', 'content_style' : "color:#FFFF00"}), label='Review')
 
     synopsis = forms.CharField(max_length= 1000, widget = forms.Textarea(attrs = {'rows' : '10', 'cols' : '90'}))
     quote = forms.CharField(max_length= 500, widget = forms.Textarea(attrs = {'rows' : '2', 'cols' : '90'}))
@@ -145,12 +145,12 @@ class ReviewAdmin(admin.ModelAdmin):
 
 
 
-    def add_people(self, movie, request):
+    def add_people(self, movie, request, ncast=5):
         cast = []
         director = []
         tmdb_cast = movie.credits()['cast']
         tmdb_crew = movie.credits()['crew']
-        for i in range(min(len(tmdb_cast), 5)):
+        for i in range(min(len(tmdb_cast), ncast)):
             c = tmdb_cast[i]
             pid = c['id']
             tmdb_person = tmdb.People(pid).info()
@@ -159,12 +159,28 @@ class ReviewAdmin(admin.ModelAdmin):
                 cast += [ pp ]
             except:
                 names = tmdb_person['name'].split()
+                #let's make a guess on this...
+                if len(names) == 2:
+                    first_name=names[0]
+                    last_name=names[1]
+                if len(names) == 3:
+                    first_name=names[0] + names[1]
+                    last_name = names[2]
+                elif len(names) == 4:
+                    first_name=names[0] + names[1]
+                    last_name = names[2] + names[3]
+                else:
+                    #don't have a better idea but this
+                    first_name = names[0]
+                    last_name = names[1]
+                    for i in range(len(names)-2):
+                        lastname += " "+names[i+2]
                 dob='1990-01-01'
                 if 'birthday' in tmdb_person.keys() and tmdb_person['birthday'] is not None:
                     dob = tmdb_person['birthday']
                 g = 'M'
                 if tmdb_person['gender'] == 1: g = 'F'
-                pp = person(first_name = names[0], last_name = names[1], date_of_birth = dob, gender = g, imdb = tmdb_person['imdb_id'])
+                pp = person(first_name = first_name, last_name = last_name, date_of_birth = dob, gender = g, imdb = tmdb_person['imdb_id'])
                 pp.save()
                 self.message_user(request, 'added %s'%(pp.name()))
                 cast += [ pp ]
