@@ -18,7 +18,7 @@ tmdb.API_KEY = os.environ['TMDB_API_KEY']
 
 
 def index(request):
-    return render(request, 'index.html', {'reviews' : review.objects.order_by('-created_date')[:5], 'features' : feature.objects.order_by('-created_date')[:3]})
+    return render(request, 'index.html', {'reviews' : review.objects.filter(status='p').order_by('-created_date')[:5], 'features' : feature.objects.order_by('-created_date')[:3]})
 
 def persons(request, person_id):
     f = get_object_or_404(person, id=person_id)

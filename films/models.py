@@ -7,6 +7,13 @@ from datetime import date
 from math import floor, ceil
 import ast
 
+STATUS_CHOICES = (
+    ('d', 'Draft'),
+    ('p', 'Published'),
+    ('w', 'Withdrawn'),
+)
+
+
 # Create your models here.
 class person(models.Model):
     first_name = models.CharField(max_length=30)
@@ -60,6 +67,8 @@ class review(film):
     rating = models.IntegerField(choices = RATING_CHOICES)
     image = models.ImageField(blank=True, upload_to = 'images')
     image_small = models.ImageField(blank=True, upload_to = 'images')
+    status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='d')
+
     def __str__(self):
         return self.title
     def stars(self):

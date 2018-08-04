@@ -94,8 +94,8 @@ def crop_image(path, home_page = False, loc = 0):
         bottom = height
 
     new_im = im.crop((left, top, right, bottom))
-    if new_width > 600:
-        new_im = new_im.resize( (600, int(new_height * 600 / new_width)), Image.ANTIALIAS)
+    if new_width > 1000:
+        new_im = new_im.resize( (1000, int(new_height * 1000 / new_width)), Image.ANTIALIAS)
     new_im.save(path)
 
 from django import forms
@@ -110,17 +110,36 @@ class ReviewAdminForm(forms.ModelForm):
     #body = forms.CharField(max_length= 10000, widget = FroalaEditor(options={'toolbarInline': True, 'inlineMode' : True}), label='Review')
     body = forms.CharField(max_length= 10000, widget = TinyMCE(attrs = {'rows' : '30', 'cols' : '30'}), label='Review')
 
-    
     synopsis = forms.CharField(max_length= 1000, widget = forms.Textarea(attrs = {'rows' : '10', 'cols' : '90'}))
     quote = forms.CharField(max_length= 500, widget = forms.Textarea(attrs = {'rows' : '2', 'cols' : '90'}))
+
     class Meta:
-        
         fields = ['imdb', 'synopsis', 'body', 'quote', 'rating', 'image', 'image_small']
         model = review
 
 class ReviewAdmin(admin.ModelAdmin):
+    list_display = ['title', 'status']
+    actions = ['make_published']
     
     form = ReviewAdminForm
+    def make_published(self, request, queryset):
+        rows_updated = queryset.update(status='p')
+
+        if rows_updated == 1:
+            message_bit = "1 review was"
+        else:
+            message_bit = "%s reviews were" % rows_updated
+        self.message_user(request, "%s successfully marked as published." % message_bit)
+    make_published.short_description = "Mark selected reviews as published"
+
+
+    def get_readonly_fields(self, request, obj=None):
+        if obj: #This is the case when obj is already created i.e. it's an edit
+            return ['imdb']
+        else:
+            return []
+
+
 
     def add_people(self, movie, request):
         cast = []

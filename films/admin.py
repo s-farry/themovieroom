@@ -91,6 +91,19 @@ class ReviewAdminForm(forms.ModelForm):
     body = forms.CharField(max_length= 10000, widget = forms.Textarea(attrs = {'rows' : '50', 'cols' : '90'}), label='Review')
     synopsis = forms.CharField(max_length= 1000, widget = forms.Textarea(attrs = {'rows' : '10', 'cols' : '90'}))
     quote = forms.CharField(max_length= 500, widget = forms.Textarea(attrs = {'rows' : '2', 'cols' : '90'}))
+
+    actions = ['make_published']
+
+    def make_published(self, request, queryset):
+        rows_updated = queryset.update(status='p')
+
+        if rows_updated == 1:
+            message_bit = "1 review was"
+        else:
+            message_bit = "%s reviews were" % rows_updated
+        self.message_user(request, "%s successfully marked as published." % message_bit)
+    make_published.short_description = "Mark selected reviews as published"
+
     class Meta:
         
         fields = ['imdb', 'synopsis', 'body', 'quote', 'rating', 'image', 'image_small']
@@ -184,7 +197,7 @@ class ReviewAdmin(admin.ModelAdmin):
 from .models import *
 from themovieroom.admin import admin_site
 # Register your models here.
-admin_site.register(film)
-admin_site.register(review, ReviewAdmin)
-admin_site.register(person)
-admin_site.register(feature)
+#admin_site.register(film)
+#admin_site.register(review, ReviewAdmin)
+#admin_site.register(person)
+#admin_site.register(feature)
