@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}My amazing blog{% endblock %}
+
+
+
+{% block image %}
+{% endblock %}
+
+{% block body %}
+{% if features.count > 0 %}
+<table id="t02">
+<tr><th><h2>Latest Features</h2></th></tr>
+{% for feature in features %}
+  <tr><td> <a href = "{% url 'films:features' film.id %}">{{feature.title}}</a></td></tr>
+  {% endfor %}
+</table>
+{% else %}
+<h1> Features coming soon! </h1>
+{% endif %}
+
+<!-- <footer class="more"><a href="#">Read More &raquo;</a></footer> -->
+{% endblock %}
