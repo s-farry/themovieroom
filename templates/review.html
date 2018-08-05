@@ -35,6 +35,7 @@
     {% endif %}
     {% endfor %}
     </li>
+<li> {{review.published_date.date}} </li>
 </ul>
 <div class = "review">{{review.body | safe}}</div>
 {% endblock %}

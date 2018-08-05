@@ -94,6 +94,10 @@ class feature(models.Model):
     image_small = models.ImageField(blank=True, upload_to = 'images')
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
+    status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='d')
+    published_date = models.DateTimeField(auto_now=True)
+
+
     def name(self):              # __unicode__ on Python 2
         return "%s" % (self.title)
     def __str__(self):              # __unicode__ on Python 2

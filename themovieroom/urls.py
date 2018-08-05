@@ -24,6 +24,8 @@ urlpatterns = [
     url(r'^search/$', views.SearchListView, name='SearchListView'),
     url(r'^person/(?P<person_id>[0-9]+)/$', views.persons, name='persons'),
     url(r'^reviews/', include('films.urls')),
+    url(r'^features/', views.features_view, name='features'),
+    url(r'^features/(?P<feature_id>[0-9]+)/$', views.feature_view, name='feature'),
     url(r'^tinymce/', include('tinymce.urls')),
 
 ]
