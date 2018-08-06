@@ -150,9 +150,10 @@ TINYMCE_DEFAULT_CONFIG = {
     'style_formats': '{title: "test, selector: "div", classes: "review"}'
     }
 
-
-SESSION_COOKIE_DOMAIN = 'themovieroom.co.uk'
-SESSION_ENGINE='django.contrib.sessions.backends.db'
+#only want this on server
+if 'DJANGO_DEBUG' not in os.environ:
+    SESSION_COOKIE_DOMAIN = 'themovieroom.co.uk'
+    SESSION_ENGINE='django.contrib.sessions.backends.db'
 
 #to ensure we can see the uploaded files
 FILE_UPLOAD_PERMISSIONS = 0644

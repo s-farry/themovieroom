@@ -119,8 +119,12 @@ class ReviewAdminForm(forms.ModelForm):
 
 from django.utils import timezone
 
+from django.utils.html import format_html
+
 class ReviewAdmin(admin.ModelAdmin):
-    list_display = ['title', 'status']
+    list_display = ['title', 'status', 'show_link']
+    list_filter = [ 'status' ]
+    search_fields = [ 'title' ]
     actions = ['make_published']
     
     form = ReviewAdminForm
@@ -135,6 +139,10 @@ class ReviewAdmin(admin.ModelAdmin):
             message_bit = "%s reviews were" % rows_updated
         self.message_user(request, "%s successfully marked as published." % message_bit)
     make_published.short_description = "Mark selected reviews as published"
+
+    def show_link(self, obj):
+        return format_html('<a href="/reviews/{id}">See Here</a>', id=obj.id)
+    show_link.short_description="Link"
 
 
     def get_readonly_fields(self, request, obj=None):
