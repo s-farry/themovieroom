@@ -147,7 +147,8 @@ TINYMCE_DEFAULT_CONFIG = {
     'body_class' : 'tinymce',
     'body_id' : 'tinymce',
     'content_style' : "div {margin: 10px; border: 5px solid red; padding: 3px}",
-    'style_formats': '{title: "test, selector: "div", classes: "review"}'
+    'style_formats': '{title: "test, selector: "div", classes: "review"}',
+    'plugins' : 'wordcount'
     }
 
 #only want this on server
