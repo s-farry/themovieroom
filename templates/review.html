@@ -5,7 +5,9 @@
 
 {% block image %}
 <article class = "review">
+{% if review.image %}
 <figure><img src="{{ review.image.url }}" alt=""></figure>
+{% endif %}
 </article>
   <article class = "quote" >
 "{{review.quote}}"</article>

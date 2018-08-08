@@ -19,7 +19,7 @@ from . import views
 from .admin import *
 
 urlpatterns = [
-    url(r'^admin_site/', admin_site.urls),
+    url(r'^admin_site/', admin_site.urls, name='admin'),
     url(r'^$', views.index, name='index'),
     url(r'^search/$', views.SearchListView, name='SearchListView'),
     url(r'^person/(?P<person_id>[0-9]+)/$', views.persons, name='persons'),

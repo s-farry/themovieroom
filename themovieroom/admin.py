@@ -107,7 +107,29 @@ from tinymce.widgets import TinyMCE
 LOCATION_CHOICES = (
     (0, 'Center'),
     (1, 'Left'),
+    (2, 'Right'),
+    (3, 'Top'),
+    (4, 'Bottom'),
+    (5, 'Top-Left'),
+    (6, 'Top-Right'),
+    (7, 'Bottom-Left'),
+    (8, 'Bottom-Right'),
 )
+NCAST_CHOICES = (
+    (0, '0'),
+    (1, '1'),
+    (2, '2'),
+    (3, '3'),
+    (4, '4'),
+    (5, '5'),
+    (6, '6'),
+    (7, '7'),
+    (8, '8'),
+    (9, '9'),
+    (10, '10'),
+    (-1, 'ALL')
+)
+
 
 
 
@@ -120,9 +142,11 @@ class ReviewAdminForm(forms.ModelForm):
     synopsis = forms.CharField(max_length= 1000, widget = forms.Textarea(attrs = {'rows' : '10', 'cols' : '90'}))
     quote = forms.CharField(max_length= 500, widget = forms.Textarea(attrs = {'rows' : '2', 'cols' : '90'}))
     img_crop = forms.ChoiceField(initial=0, choices=LOCATION_CHOICES)
+    img_crop_small = forms.ChoiceField(initial=0, choices=LOCATION_CHOICES)
+    ncast = forms.ChoiceField(initial=5, choices = NCAST_CHOICES, label='Number of Cast to Add')
 
     class Meta:
-        fields = ['imdb', 'synopsis', 'body', 'quote', 'rating', 'image', 'img_crop', 'image_small']
+        fields = ('imdb', 'ncast', 'synopsis', 'body', 'quote', 'rating', 'image', 'img_crop', 'image_small', 'img_crop_small')
         model = review
 
 from django.utils import timezone
@@ -169,6 +193,8 @@ class ReviewAdmin(admin.ModelAdmin):
         director = []
         tmdb_cast = movie.credits()['cast']
         tmdb_crew = movie.credits()['crew']
+        if ncast == -1:
+            ncast = len(tmdb_cast)
         for i in range(min(len(tmdb_cast), ncast)):
             c = tmdb_cast[i]
             pid = c['id']
@@ -234,6 +260,9 @@ class ReviewAdmin(admin.ModelAdmin):
 
 
     def save_model(self, request, obj, form, change):
+        ncast = int(request.POST.get('ncast'))
+        img_crop_small = int(request.POST.get('img_crop_small'))
+        img_crop = int(request.POST.get('img_crop'))
         if not change:
             if 'tt' in obj.imdb: obj.imdb = obj.imdb.strip('tt')
             f = tmdb.Find('tt'+obj.imdb)
@@ -246,13 +275,21 @@ class ReviewAdmin(admin.ModelAdmin):
             self.message_user(request, 'Saving imdb id tt%s as %s'%(obj.imdb,obj.title))
         super(ReviewAdmin, self).save_model(request, obj, form, change)
         if not change:
-            self.cast, self.director = self.add_people(self.tmdb_movie, request)
+            self.cast, self.director = self.add_people(self.tmdb_movie, request, ncast)
             for c in self.cast: obj.cast.add(c)
             for d in self.director: obj.director.add(d)
+        if change and ncast > len(obj.cast.all()):
+            self.cast, self.director = self.add_people(self.tmdb_movie, request, ncast)
+            for c in self.cast:
+                if len(obj.cast.filter(imdb=c.imdb)) == 0:
+                    obj.cast.add(c)
+            
         if not change or 'image_small' in form.changed_data:
-            crop_image(obj.image_small.path, home_page = True)
+            if obj.image_small:
+                crop_image(obj.image_small.path, home_page = True)
         if not change or 'image' in form.changed_data:
-            crop_image(obj.image.path, home_page = False)
+            if obj.image:
+                crop_image(obj.image.path, home_page = False)
 
 admin_site = MyAdminSite()
 from django.contrib.auth.models import User
