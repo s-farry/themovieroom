@@ -1,3 +1,4 @@
+
 from __future__ import unicode_literals
 from django.contrib import admin
 from django.contrib.admin import AdminSite
@@ -143,7 +144,7 @@ class ReviewAdminForm(forms.ModelForm):
     quote = forms.CharField(max_length= 500, widget = forms.Textarea(attrs = {'rows' : '2', 'cols' : '90'}))
     img_crop = forms.ChoiceField(initial=0, choices=LOCATION_CHOICES)
     img_crop_small = forms.ChoiceField(initial=0, choices=LOCATION_CHOICES)
-    ncast = forms.ChoiceField(initial=5, choices = NCAST_CHOICES, label='Number of Cast to Add')
+    ncast = forms.ChoiceField(initial=5, choices = NCAST_CHOICES, label='Cast to Show')
 
     class Meta:
         fields = ('imdb', 'ncast', 'synopsis', 'body', 'quote', 'rating', 'image', 'img_crop', 'image_small', 'img_crop_small')
@@ -179,6 +180,12 @@ class ReviewAdmin(admin.ModelAdmin):
             return format_html('<a href="/admin_site/preview/{id}">See Here</a>', id=obj.id)            
     show_link.short_description="Link"
 
+    def get_form(self, request, obj=None, **kwargs):
+        form = super(ReviewAdmin, self).get_form(request, obj, **kwargs)
+        if obj:
+            form.base_fields['ncast'].initial = len(obj.cast.all())
+        return form
+
 
     def get_readonly_fields(self, request, obj=None):
         if obj: #This is the case when obj is already created i.e. it's an edit
@@ -199,10 +206,10 @@ class ReviewAdmin(admin.ModelAdmin):
             c = tmdb_cast[i]
             pid = c['id']
             tmdb_person = tmdb.People(pid).info()
-            try:
+            if len(person.objects.filter(imdb = tmdb_person['imdb_id'])) > 0:
                 pp = person.objects.get(imdb = tmdb_person['imdb_id'])
                 cast += [ pp ]
-            except:
+            else:
                 names = tmdb_person['name'].split()
                 #let's make a guess on this...
                 if len(names) == 2:
@@ -236,10 +243,10 @@ class ReviewAdmin(admin.ModelAdmin):
             pid = c['id']
             tmdb_person = tmdb.People(pid).info()
             
-            try:
-                pp = person.objects.get(imdb = pid)
+            if len(person.objects.filter(imdb = tmdb_person['imdb_id'])) > 0:
+                pp = person.objects.get(imdb = tmdb_person['imdb_id'])
                 director += [ pp ]
-            except:
+            else:
                 names = tmdb_person['name'].split()
                 dob = '1990-01-01'
                 if 'birthday' in tmdb_person.keys() and tmdb_person['birthday'] is not None:
@@ -279,10 +286,19 @@ class ReviewAdmin(admin.ModelAdmin):
             for c in self.cast: obj.cast.add(c)
             for d in self.director: obj.director.add(d)
         if change and ncast > len(obj.cast.all()):
+            if 'tt' in obj.imdb: obj.imdb = obj.imdb.strip('tt')
+            f = tmdb.Find('tt'+obj.imdb)
+            m = f.info(external_source = "imdb_id")['movie_results'][0]
+            self.tmdb_movie = tmdb.Movies(m['id'])
             self.cast, self.director = self.add_people(self.tmdb_movie, request, ncast)
             for c in self.cast:
                 if len(obj.cast.filter(imdb=c.imdb)) == 0:
                     obj.cast.add(c)
+        if change and ncast < len(obj.cast.all()):
+            for i,c in enumerate(obj.cast.all()):
+                if i >= ncast:
+                    obj.cast.remove(c)
+
             
         if not change or 'image_small' in form.changed_data:
             if obj.image_small:
