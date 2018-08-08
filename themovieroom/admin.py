@@ -15,7 +15,8 @@ class MyAdminSite(AdminSite):
         # Note that custom urls get pushed to the list (not appended)
         # This doesn't work with urls += ...
         urls = [
-            url(r'^update/$', self.admin_view(views.update), name='update')
+            url(r'^update/$', self.admin_view(views.update), name='update'),
+            url(r'^preview/(?P<review_id>[0-9]+)/$', self.admin_view(preview), name='preview')
         ] + urls
         return urls
 
@@ -103,6 +104,12 @@ from films.models import *
 #from froala_editor.widgets import FroalaEditor
 from tinymce.widgets import TinyMCE
 
+LOCATION_CHOICES = (
+    (0, 'Center'),
+    (1, 'Left'),
+)
+
+
 
 class ReviewAdminForm(forms.ModelForm):
     imdb = forms.CharField(max_length=9)
@@ -112,9 +119,10 @@ class ReviewAdminForm(forms.ModelForm):
 
     synopsis = forms.CharField(max_length= 1000, widget = forms.Textarea(attrs = {'rows' : '10', 'cols' : '90'}))
     quote = forms.CharField(max_length= 500, widget = forms.Textarea(attrs = {'rows' : '2', 'cols' : '90'}))
+    img_crop = forms.ChoiceField(initial=0, choices=LOCATION_CHOICES)
 
     class Meta:
-        fields = ['imdb', 'synopsis', 'body', 'quote', 'rating', 'image', 'image_small']
+        fields = ['imdb', 'synopsis', 'body', 'quote', 'rating', 'image', 'img_crop', 'image_small']
         model = review
 
 from django.utils import timezone
@@ -141,7 +149,10 @@ class ReviewAdmin(admin.ModelAdmin):
     make_published.short_description = "Mark selected reviews as published"
 
     def show_link(self, obj):
-        return format_html('<a href="/reviews/{id}">See Here</a>', id=obj.id)
+        if obj.status == 'p' :
+            return format_html('<a href="/reviews/{id}">See Here</a>', id=obj.id)
+        elif obj.status == 'd' :
+            return format_html('<a href="/admin_site/preview/{id}">See Here</a>', id=obj.id)            
     show_link.short_description="Link"
 
 

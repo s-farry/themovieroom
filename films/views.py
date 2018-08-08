@@ -12,6 +12,10 @@ def index(request):
     return render(request, 'reviews.html', {'films' : review.objects.filter(status='p')})
 
 def detail(request, review_id):
-    r = get_object_or_404(review, id=review_id)
+    r = get_object_or_404(review, id=review_id,status='p')
+    return render(request, 'review.html', {'review': r})
+
+def preview(request, review_id):
+    r = get_object_or_404(review, id=review_id,status='d')
     return render(request, 'review.html', {'review': r})
 
