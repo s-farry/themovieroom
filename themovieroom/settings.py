@@ -150,7 +150,9 @@ TINYMCE_DEFAULT_CONFIG = {
     'content_style' : "div {margin: 10px; border: 5px solid red; padding: 3px}",
     'style_formats': '{title: "test, selector: "div", classes: "review"}',
     'plugins' : 'wordcount,spellchecker',
-    'toolbar' : 'spellchecker'
+    #'theme_advanced_buttons2': "spellchecker",
+    'browser_spellcheck' : True,
+    'gecko_spellcheck'   : True,
     }
 
 #only want this on server
