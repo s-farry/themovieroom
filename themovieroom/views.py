@@ -55,7 +55,7 @@ from .forms import UpdateHome
 def print_movie(block, f,m):
     out = ""
     f.write('{% block '+block+' %}')
-    if review.objects.filter(tmdb=m['id']).exists():
+    if review.objects.filter(status='p').filter(tmdb=m['id']).exists():
         r = review.objects.get(tmdb=m['id'])
         f.write("<a href=\"{% url 'films:detail' "+str(r.id)+" %}\">"+m["title"]+"</a>&nbsp;&nbsp;")
         for star in r.stars():
