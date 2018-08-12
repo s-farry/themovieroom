@@ -9,7 +9,7 @@ from django.shortcuts import get_object_or_404, render
 from .models import review, film
 
 def index(request):
-    return render(request, 'reviews.html', {'films' : review.objects.filter(status='p')})
+    return render(request, 'reviews.html', {'reviews' : review.objects.filter(status='p').order_by('--published_date')})
 
 def detail(request, review_id):
     r = get_object_or_404(review, id=review_id,status='p')

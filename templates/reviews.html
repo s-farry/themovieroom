@@ -2,19 +2,24 @@
 {% load static %}
 
 
-{% block title %}My amazing blog{% endblock %}
-
-
+{% block title %}
+<title>Reviews</title>
+<meta name="description" content="Reviews of movies new and old"/>
+<meta property="og:title" content="Reviews | The Movie Room" />
+<meta property="og:url" content="http://www.themovieroom.co.uk/" />
+<meta property="og:description" content="Latest reviews on themovieroom.co.uk" />
+<meta property="og:image" content="{% if reviews.count > 0 %}{{ reviews.0.image_small.url }} {% else %} {% static 'images/favicon.ico' %} {% endif %}" /> 
+{% endblock %}
 
 {% block image %}
 {% endblock %}
 
 {% block body %}
-{% if films.count > 0 %}
+{% if reviews.count > 0 %}
 <table id="t02">
 <tr><th><h2>Latest Reviews</h2></th></tr>
-{% for film in films %}
-  <tr><td> <a href = "{% url 'films:detail' film.id %}">{{film.title}} ({{film.release_date.year}})</a></td></tr>
+{% for review in reviews %}
+  <tr><td> <a href = "{% url 'films:detail' review.id %}">{{review.title}} ({{review.release_date.year}})</a></td></tr>
   {% endfor %}
 </table>
 {% endif %}

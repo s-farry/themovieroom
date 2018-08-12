@@ -5,26 +5,23 @@
 <html lang="en" dir="ltr">
   <head>
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-
+{% block title %}
 <title>The Movie Room</title>
-<meta name="description" content="Reviews of movies new and old">
+<meta name="description" content="Reviews of movies new and old"/>
 <meta property="og:title" content="The Movie Room" />
 <meta property="og:url" content="https://www.themovieroom.co.uk/" />
 <meta property="og:description" content="Reviews of movies new and old">
-<meta property="og:image" content="{% static 'images/favicon.ico' %}" >
+<meta property="og:image" content="{% static 'images/favicon.ico' %}" />
+{% endblock %}
 <meta property="og:type" content="article" />
 <meta property="og:locale" content="en_GB" />
-
-
-
-
 <meta charset="iso-8859-1">
-<link rel="stylesheet" href="{% static 'styles/layout.css' %}" type="text/css">
+<link rel="stylesheet" href="{% static 'styles/layout.css' %}" type="text/css"/>
 <!--[if lt IE 9]><script src="scripts/html5shiv.js"></script><![endif]-->
-<link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.ico' %}">
-<link rel="apple-touch-icon" sizes="152x152" href="{% static 'images/themovieroom_152x152.png' %}">
-<link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/themovieroom_180x180.png' %}">
-<link rel="apple-touch-icon" sizes="167x167" href="{% static 'images/themovieroom_167x167.png' %}">
+<link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.ico' %}"/>
+<link rel="apple-touch-icon" sizes="152x152" href="{% static 'images/themovieroom_152x152.png' %}"/>
+<link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/themovieroom_180x180.png' %}"/>
+<link rel="apple-touch-icon" sizes="167x167" href="{% static 'images/themovieroom_167x167.png' %}"/>
 
 </head>
 <body>
