@@ -133,6 +133,7 @@ MEDIA_ROOT = os.path.join(os.environ["HOME"], "public_html/media/")
 #TINYMCE_DEFAULT_CONFIG = {'theme' : 'inlite', 'relative_urls' : False,
 #                          'plugins': "table,paste,searchreplace,image"}
 
+TINYMCE_SPELLCHECKER = True
 TINYMCE_DEFAULT_CONFIG = {
     'height': 360,
     'width': 800,
@@ -148,7 +149,8 @@ TINYMCE_DEFAULT_CONFIG = {
     'body_id' : 'tinymce',
     'content_style' : "div {margin: 10px; border: 5px solid red; padding: 3px}",
     'style_formats': '{title: "test, selector: "div", classes: "review"}',
-    'plugins' : 'wordcount'
+    'plugins' : 'wordcount,spellchecker',
+    'toolbar' : 'spellchecker'
     }
 
 #only want this on server
