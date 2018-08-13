@@ -233,6 +233,8 @@ class ReviewAdmin(admin.ModelAdmin):
                 g = 'M'
                 if tmdb_person['gender'] == 1: g = 'F'
                 pp = person(first_name = first_name, last_name = last_name, date_of_birth = dob, gender = g, imdb = tmdb_person['imdb_id'])
+                if 'deathday' in tmdb_person.keys() and tmdb_person['deathday'] is not None:
+                    pp.date_of_death = tmdb_person['deathday']
                 pp.save()
                 self.message_user(request, 'added %s'%(pp.name()))
                 cast += [ pp ]
@@ -248,12 +250,31 @@ class ReviewAdmin(admin.ModelAdmin):
                 director += [ pp ]
             else:
                 names = tmdb_person['name'].split()
+                #let's make a guess on this...
+                if len(names) == 2:
+                    first_name=names[0]
+                    last_name=names[1]
+                if len(names) == 3:
+                    first_name=names[0] + names[1]
+                    last_name = names[2]
+                elif len(names) == 4:
+                    first_name=names[0] + names[1]
+                    last_name = names[2] + names[3]
+                else:
+                    #don't have a better idea but this
+                    first_name = names[0]
+                    last_name = names[1]
+                    for i in range(len(names)-2):
+                        lastname += " "+names[i+2]
+
                 dob = '1990-01-01'
                 if 'birthday' in tmdb_person.keys() and tmdb_person['birthday'] is not None:
                     dob = tmdb_person['birthday']
                 g = 'M'
                 if tmdb_person['gender'] == 1: g = 'F'
-                pp = person(first_name = names[0].decode('utf-8'), last_name = names[1].decode('utf-8'), date_of_birth = dob, gender = g, imdb = pid)
+                pp = person(first_name = first_name.decode('utf-8'), last_name = last_name.decode('utf-8'), date_of_birth = dob, gender = g, imdb = pid)
+                if 'deathday' in tmdb_person.keys() and tmdb_person['deathday'] is not None:
+                    pp.date_of_death = tmdb_person['deathday']
                 pp.save()
                 director += [ pp ]
         return [cast, director]

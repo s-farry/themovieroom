@@ -19,6 +19,8 @@ class person(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     date_of_birth = models.DateField(default='1990-01-01')
+    date_of_death = models.DateField(blank=True, null=True)
+
     GENDER_CHOICES = (
         ('M', 'Male'),
         ('F', 'Female'),
@@ -28,6 +30,8 @@ class person(models.Model):
     image = models.ImageField(blank=True, upload_to = 'images')
     def age(self):
         today = date.today()
+        if self.date_of_death:
+            today = self.date_of_death
         return today.year - self.date_of_birth.year - ((today.month, today.day) < (self.date_of_birth.month, self.date_of_birth.day))
     def name(self):              # __unicode__ on Python 2
         return "%s %s" % (self.first_name, self.last_name)
