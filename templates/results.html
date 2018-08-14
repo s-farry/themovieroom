@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+<title>Search Results for {{ query }} | The Movie Room </title>
+<meta name="description" content="Reviews of movies new and old"/>
+<meta property="og:title" content="Search results for {{query}} | The Movie Room" />
+<meta property="og:url" content="https://themovieroom.co.uk/" />
+<meta property="og:description" content="" />
+<meta property="og:image" content="{% static 'images/favicon.ico' %}" />
+
+
+
+{% endblock %}
+
+
+
+{% block image %}
+{% endblock %}
+
+{% block body %}
+{% if persons.count == 0 and reviews.count == 0 %}
+Sorry, no search results found for "{{ query }}"
+{% else %}
+Search results for "{{ query }}"
+{% endif %}
+{% if reviews.count > 0 %}
+<table id="t02">
+<tr><th>
+{% if reviews.count == 1%}
+Found 1 Review
+{% else %}
+Found {{ reviews.count }} Reviews
+{% endif %}
+</th></tr>
+{% for film in reviews %}
+  <tr><td> <a href = "{% url 'films:detail' film.id %}">{{film.title}} ({{film.release_date.year}})</a></td></tr>
+  {% endfor %}
+</table>
+{% endif %}
+{% if persons.count > 0 %}
+<table id = "t02">
+<tr><th>
+{% if persons.count == 1 %}
+Found 1 Person
+{% else %}
+Found {{persons.count}} People
+{% endif %}
+</tr></th>
+  {% for person in persons %}
+  <tr><td> <a href = "{% url 'persons' person.id %}"> {{person.first_name}} {{person.last_name}}</a></td></tr>
+</table>
+
+<!--{%if person.cast.count > 0 %}
+{% for film in person.cast.all %}
+  <li> <a href = "{% url 'films:detail' film.id %}">{{film.title}} ({{film.release_date.year}})</a></li>
+  {% endfor %}
+-->
+  </ul>
+{% endif %}
+{%if person.director.count > 0 %}
+Directed
+{% for film in person.director.all %}
+{{film.title}}<br>
+{% endfor %}
+{% endif %}
+  {% endfor %}
+</ul>
+{% endif %}
+<!-- <footer class="more"><a href="#">Read More &raquo;</a></footer> -->
+{% endblock %}
