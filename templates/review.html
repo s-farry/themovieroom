@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load user_agents %}
 
 {% block title %}
 <title>{{ review.title }} ({{ review.release_date.year }}) | The Movie Room </title>
@@ -8,6 +9,7 @@
 <meta property="og:url" content="https://www.themovieroom.co.uk/" />
 <meta property="og:description" content="{% for star in review.stars  %}{% if star == 1 %} ★  {% elif star == 0.5 %} 1/2 {% endif %} {% endfor %}">
 <meta property="og:image" content="{{ review.image_small.url }}" />
+
 {% endblock %}
 
 {% block image %}
@@ -17,7 +19,11 @@
 {% endif %}
 </article>
   <article class = "quote" >
-"{{review.quote}}"</article>
+"{{review.quote}}"
+{% if request|is_mobile %}
+You're using a mobile
+{% endif %}
+</article>
 
 {% endblock %}
 
