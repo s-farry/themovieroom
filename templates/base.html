@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 {% load static %}
 {% load common %}
+{% load user_agents %}
+
 
 <html lang="en" dir="ltr">
   <head>
@@ -17,6 +19,10 @@
 <meta property="og:locale" content="en_GB" />
 <meta charset="iso-8859-1">
 <link rel="stylesheet" href="{% static 'styles/layout.css' %}" type="text/css"/>
+{% if request|is_mobile %}
+<link rel="stylesheet" href="{% static 'styles/mobile.css' %}" type="text/css"/>
+{% endif %}
+
 <!--[if lt IE 9]><script src="scripts/html5shiv.js"></script><![endif]-->
 <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.ico' %}"/>
 <link rel="apple-touch-icon" sizes="152x152" href="{% static 'images/themovieroom_152x152.png' %}"/>
@@ -28,7 +34,7 @@
 <div class="wrapper row1">
   <header id="header" class="clear">
     <div id="hgroup">
-         <img src="{% static 'images/themovieroom_trim.png' %}" alt="" height=100px>
+         <img src="{% static 'images/themovieroom_trim.png' %}" alt="">
     </div>
     <nav>
       <ul>
@@ -58,44 +64,17 @@
     <div id="homepage">
       <!-- ########################################################################################## -->
       <section class="clear">
-        <article class="two_third">
+        <article class="{% if request|is_mobile %}three_third{% else %}two_third{% endif %}">
 	  {% block body %}
 	  {% endblock %}
         </article>
+	{% if not request|is_mobile %}
         <article class="one_third lastbox">
 	  {% block sidebar %}
 	  {% endblock %}
         </article>
+	{% endif %}
       </section>
-      <!-- / Two Third -->
-      <!-- ########################################################################################## -->
-      <!-- ########################################################################################## -->
-      <!-- ########################################################################################## -->
-      <!-- ########################################################################################## -->
-      <!-- One Third -->
-      <!--
-      <section class="services clear">
-        <article class="one_third">
-          <h2>Lorum ipsum dolor</h2>
-          <img src="{% static 'images/demo/80x80.gif' %}" alt="">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc non diam erat. In fringilla massa ut nisi ullamcorper.</p>
-          <footer class="more"><a href="#">Read More &raquo;</a></footer>
-        </article>
-        <article class="one_third">
-          <h2>Lorum ipsum dolor</h2>
-          <img src="{% static 'images/demo/80x80.gif' %}" alt="">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc non diam erat. In fringilla massa ut nisi ullamcorper.</p>
-          <footer class="more"><a href="#">Read More &raquo;</a></footer>
-        </article>
-        <article class="one_third lastbox">
-          <h2>Lorum ipsum dolor</h2>
-          <img src="{% static 'images/demo/80x80.gif' %}" alt="">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc non diam erat. In fringilla massa ut nisi ullamcorper.</p>
-          <footer class="more"><a href="#">Read More &raquo;</a></footer>
-        </article>
-        <div class="spacer"></div>
-      </section>
-      <!-- ########################################################################################## -->
     </div>
     <!-- / content body -->
   </div>

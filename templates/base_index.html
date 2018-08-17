@@ -34,12 +34,11 @@
 {% endblock %}
 {% block body %}
 
-
-
 {% for review in reviews %}
 {% if review.id == mainid %}
 
-<div class = "mainsynopsis"><a href="{% url 'films:detail' mainid %}"><figure class = "preview"><img src = "{{ review.image_small.url }}"><br>
+<div class = "mainsynopsis"><a href="{% url 'films:detail' mainid %}">
+<figure><img src = "{{ review.image_small.url }}"><br>
       <figcaption id = "title"> <h1> {{review.title}} ({{review.release_date.year}}) </h1>
         {% for star in review.stars  %}
         {% if star == 1 %} ★

@@ -2,7 +2,15 @@
 {% load static %}
 
 
-{% block title %}My amazing blog{% endblock %}
+{% block title %}
+<title>Features</title>
+<meta name="description" content="Reviews of movies new and old"/>
+<meta property="og:title" content="Features | The Movie Room" />
+<meta property="og:url" content="https://themovieroom.co.uk/" />
+<meta property="og:description" content="Latest features on themovieroom.co.uk" />
+<meta property="og:image" content="{% if features.count > 0 %}{{ features.0.image.url }} {% else %} {% static 'images/favicon.ico' %} {% endif %}" /> 
+{% endblock %}
+
 
 
 

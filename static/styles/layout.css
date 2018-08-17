@@ -89,12 +89,18 @@ input, textarea, select{font-size:12px; font-family:Georgia,"Times New Roman",Ti
 /* a lot of messing here to align image with nav box with search */
 /* negative margin as it always starts at top of nav box for some reason */
 
+
+/* here we're mainly positioning the image */
+
 #header #hgroup{float:left;padding-left:0px;padding-bottom:0px;}
-#header #hgroup img{margin:-25px 25px 5px 25px;}
+#header #hgroup img{margin:-25px 25px 5px 25px; height:100px}
 #header #hgroup h1, #header #hgroup h2{font-weight:normal; text-transform:none;}
 #header #hgroup h1{font-size:36px;}
 #header #hgroup h2{font-size:13px;}
 
+
+
+/* here we position the search form */
 #header form{margin:25px 20px 5px 20px; padding:0;float:right;}
 #header form input{dispay:block; width:150px; margin:0; padding:5px; background-color:var(--main-bg-color); border:1px solid #DEDEDE; font-family:var(--main-font-family); color:#DEDEDE;}
 #header form #sf_submit{float:right;width:25px; margin-left:5px;font-size:12px; font-weight:bold; text-transform:uppercase; cursor:pointer; font-family:var(--main-font-family); background-color:var(--main-bg-color);}
@@ -104,6 +110,10 @@ input, textarea, select{font-size:12px; font-family:Georgia,"Times New Roman",Ti
     background-position:45% 50%;
     background-repeat:no-repeat
 }
+
+
+/* and finally the navigation bar */
+/* maybe I should just have given this a height... */
 
 #header nav{display:block;width:100%; margin:30px 5px 5px 5px; padding:10px 0px 30px 0px; border:1px solid #DEDEDE; font-size:16px;} /*padding is tlbr */
 #header nav ul{display:inline;float:left;}
@@ -139,23 +149,6 @@ ul {
 #container #homepage .services{margin:0; font-size:12px;}
 #container #homepage .services article{}
 #container #homepage .services article h2{margin-bottom:10px; text-transform:uppercase; font-size:14px; font-weight:bold;}
-#container #homepage figure {float:left;margin-right:0px;display:block;height:232px;position:relative;width:313px;}
-#container #homepage figure img{float:left; width:313px;height:200px;}
-#container #homepage figcaption{
-    height: 50px;
-    width: 305px;
-    color: #FFF;
-    padding: 4px;
-    font-family::var(--main-font-family); color:#919191;
-    position: absolute;
-    background-color:rgba(10,10,10,0.8);
-    display:block;
-    bottom:30px;
-}
-
-#container #homepage a:hover figure figcaption {
-    background-color:rgba(10,10,10,0.9);
-}
 #container #homepage .services article img{float:left; padding:4px; border:1px solid #D6D6D6;}
 #container #homepage .services article p{display:block; float:right; width:200px; margin:0; padding:0;}
 #container #homepage .services article footer{padding-top:10px; clear:both;}
@@ -193,21 +186,44 @@ table#t02 {
 }
 
 
+
+#container #homepage a:hover figure figcaption {
+    background-color:rgba(10,10,10,0.9);
+}
+/* common to both */
+#container #homepage figure{
+    margin:1px;
+    position:relative;
+}
+#container #homepage figcaption{
+    color: #FFF;
+    font-family::var(--main-font-family); color:#919191;
+    position: absolute;
+    background-color:rgba(10,10,10,0.8);
+    display:block;
+    vertical-align:middle;
+}
+
+#container #homepage .mainsynopsis figure{float:center;height:400px;width:630px;margin-right:0px;margin-bottom:20px; padding-botom:10px;}
+#container #homepage .mainsynopsis img{width:630px;height:400px;}
+#container #homepage .mainsynopsis figcaption#title{top:5%; width:auto;min-width:200px;max-width:590px;height:30px;padding:10px;padding-bottom:25px; padding-left:30px;}
+#container #homepage .mainsynopsis figcaption#synopsis{bottom:0%; width:570px;height:45px;padding:30px;padding-top:10px;background-color:rgba(10,10,10,0.8);vertical-align:middle;}
+#container #homepage .mainsynopsis{background-color:rgba(50,50,50,1.0);margin-bottom:0px;}
+#container #homepage .mainsynopsis h1{font-size:20px;font-weight:bold;text-transform:uppercase;}
+
+
+#container #homepage .synopsis figure {float:left;margin-right:0px;display:block;height:200px;width:313px;margin:1px;}
+#container #homepage .synopsis figure img{float:left; width:313px;height:200px;}
+#container #homepage .synopsis figcaption {height: 50px;width: 305px;    padding: 4px;     bottom:30px;};
+
+#container #homepage .synopsis{padding: 0px 0px 0px 0px;margin-top:30px;margin-bottom:100px;margin-left:0px;margin-right:0px;background-color:var(--main-bg-color);}
+
 #container #homepage .feature{background-color:#eee;}
 #container #homepage .feature img{width:250px;float:left;margin:5px;}
 #container #homepage .feature h1{ padding:10px;background-color:var(--main-bg-color);width:100%;display:block;    box-sizing: border-box;
 margin-bottom:10px;}
 
-#container #homepage .preview{float:center;height:400px;width:630px;margin-right:0px;margin-bottom:20px; padding-botom:10px;}
-#container #homepage .preview img{width:630px;height:400px;}
-#container #homepage .preview figcaption#title{top:5%; width:auto;min-width:200px;max-width:590px;height:30px;padding:10px;padding-bottom:25px; padding-left:30px;}
-#container #homepage .preview figcaption#synopsis{bottom:0%; width:570px;height:45px;padding:30px;padding-top:10px;background-color:rgba(10,10,10,0.8);}
-#container #homepage .synopsis{padding: 0px 0px 0px 0px;margin-top:30px;margin-bottom:100px;margin-left:0px;margin-right:0px;background-color:var(--main-bg-color);}
-#container #homepage .synopsis figure{margin:1px;}
 
-#container #homepage .mainsynopsis{background-color:rgba(50,50,50,1.0);margin-bottom:0px;}
-
-#container #homepage .mainsynopsis h1{font-size:20px;}
 
 
 
