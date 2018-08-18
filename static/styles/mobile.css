@@ -1,0 +1,60 @@
+
+/* override settings from layout.css to make them more mobile friendly */
+
+body {font-size:14px;}
+div.wrapper{padding:5px;}
+
+#header #hgroup img{margin:-25px 25px 5px 25px; height:200px}
+#header nav{display:block;width:100%; height:auto; margin:30px 5px 15px 5px; padding:10px 0px 60px 0px; border:2px solid #DEDEDE; font-size:46px;}
+
+#container #homepage .synopsis figure, #container #homepage .synopsis figure img{height:300px;width:470px;}
+#container #homepage .synopsis figcaption{
+    height: 90px;
+    width: 462px;
+    font-size:24px;
+}
+
+#container #homepage .mainsynopsis figure, #container #homepage .mainsynopsis img{height:600px;width:945px;fonrt-size:24px;}
+#container #homepage .mainsynopsis figcaption#title{min-width:300px;max-width:885px;height:75px;}
+#container #homepage .mainsynopsis figcaption#synopsis{width:885px;height:90px;text-align:middle;font-size:24px;}
+#container #homepage .mainsynopsis h1{font-size:40px;font-weight:bold;}
+
+#container #homepage .feature{background-color:#eee;}
+#container #homepage .feature img{width:250px;float:left;margin:5px;}
+#container #homepage .feature h1{ padding:10px;background-color:var(--main-bg-color);width:100%;display:block;    box-sizing: border-box;
+margin-bottom:10px;}
+
+
+/*search button*/
+#header form{margin:25px 20px 5px 20px; padding:0;float:left;}
+#header form input{width:300px; padding:5px;border:2px solid #DEDEDE;font-size:36px;}
+#header form #sf_submit{float:right;width:25px; margin-left:5px;font-size:36px; font-weight:bold;}
+#header form input[type=submit]{
+    background-size: 36px 36px;
+    background-position:45% 50%;
+    width:36px;
+}
+
+
+
+/* review page */
+h2 {font-size:60px;}
+#container ul {font-size:12px; padding:0;}
+#container #slider figure img{float:left; width:945px; height:450px;}
+#container #slider .quote {
+    height:auto;
+    width:auto;
+    left:0px;
+    float:left;
+    font-size:16px;
+    font-style: italic;
+    margin-top:5px;
+    margin-bottom:5px;
+}
+
+div.review::first-letter {
+  font-size: 150px;
+  padding-top: 16px;
+  padding-right: 16px;
+  padding-left: 6px;
+}
