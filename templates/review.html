@@ -26,18 +26,20 @@
 
 {% block body %}
 <h2>{{ review.title }} ( {{ review.release_date.year }} )</h2>
-{% for star in review.stars  %}{% if star == 1 %}★{% elif star == 0.5 %}1/2{% endif %}{% endfor %} &nbsp; | &nbsp; {{review.published_date.date}} </li>
-</br>
+<h3>{% for star in review.stars  %}{% if star == 1 %}★{% elif star == 0.5 %}1/2{% endif %}{% endfor %} &nbsp; | &nbsp; {{review.published_date.date}}</h3>
 {% if request|is_mobile %}
+<p>
 Director: {% for person in review.director.all %} {{ person.first_name }} {{person.last_name}} {% endfor %} </br>
 Runtime: {{ review.runtime }} minutes </br>
 Starring:
 {% for person in review.cast.all %}
-{% if forloop.first %}{% else %}
-{% if forloop.last %} and {% else %}, {% endif %}
-{% endif %}{{ person.first_name }} {{person.last_name}}
+{% if forloop.first %}
+{% elif forloop.last %}, and
+{% else %},
+{% endif %}
+{{ person.first_name }} {{person.last_name}}
 {% endfor %}
-</br>
+</p>
 {% endif %}
 <div class = "review">{{review.body | safe}}</div>
 {% endblock %}

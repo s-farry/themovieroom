@@ -12,14 +12,14 @@ html{overflow-y:scroll;} /* Forces a scrollbar when the viewport is larger than 
 /* set up some variables to use */
 :root {
     --main-font-family:"Lato", sans-serif;
-    --main-bg-color: #333333;
+    --main-color: #333333;
     --secondary-color:#979797;
-    --font-color:#C0BAB6;
-    --secondary-font-color:#FF9900;
-    
+    --secondary-font-color:#C0BAB6;
+    --tertiary-font-color:#FF9900;
+
 }
 
-body{margin:0; padding:0; font-size:13px; color:#919191; background-color:var(--main-bg-color); font-family:var(--main-font-family)}
+body{font-size:13px;color:--var(-secondary-font-color); background-color:var(--main-color); font-family:var(--main-font-family)}
 
 
 .clear:after{content:"."; display:block; height:0; clear:both; visibility:hidden; line-height:0;}
@@ -51,11 +51,11 @@ q:after{content:' „'; font-size:26px; line-height:0;}
 
 div.wrapper{display:block; width:100%; margin:0; padding:0; text-align:left;}
 
-.row1, .row1 a{color:#C0BAB6; background-color:var(--main-bg-color);}
-.row2{color:--var(--secondary-color); background-color:#FFFFFF;}
-.row2 a{color:var(--secondary-color);}
-.row2 a:hover {color:#FF9900;}
-.row3, .row3 a{color:#919191; background-color:var(--main-bg-color);}
+.row1, .row1 a{color:var(--secondary-font-color); background-color:var(--main-color);}
+.row2{color:var(--main-color); background-color:#FFFFFF;}
+.row2 a{color:var(--main-color);}
+.row2 a:hover {color:var(--tertiary-font-color);}
+.row3, .row3 a{color:var(--main-color); background-color:var(--main-color);}
 
 /*----------------------------------------------Generalise-------------------------------------*/
 
@@ -102,8 +102,8 @@ input, textarea, select{font-size:12px; font-family:Georgia,"Times New Roman",Ti
 
 /* here we position the search form */
 #header form{margin:25px 20px 5px 20px; padding:0;float:right;}
-#header form input{dispay:block; width:150px; margin:0; padding:5px; background-color:var(--main-bg-color); border:1px solid #DEDEDE; font-family:var(--main-font-family); color:#DEDEDE;}
-#header form #sf_submit{float:right;width:25px; margin-left:5px;font-size:12px; font-weight:bold; text-transform:uppercase; cursor:pointer; font-family:var(--main-font-family); background-color:var(--main-bg-color);}
+#header form input{dispay:block; width:150px; margin:0; padding:5px; background-color:var(--main-color); border:1px solid #DEDEDE; font-family:var(--main-font-family); color:#DEDEDE;}
+#header form #sf_submit{float:right;width:25px; margin-left:5px;font-size:12px; font-weight:bold; text-transform:uppercase; cursor:pointer; font-family:var(--main-font-family); background-color:var(--main-color);}
 #header form input[type=submit]{
     background: url(/static/images/search.png);
     background-size: 16px 16px;
@@ -138,14 +138,14 @@ ul {
 #container #slider{}
 #container #slider figure{}
 #container #slider figure img{float:left; width:630px; height:300px;}
-#container #slider figcaption{display:block; background-color:#333333; width:600px; height:200px; padding:10px}
-#container #slider figure figcaption a{color:#FF9900; background-color:#333333;}
+#container #slider figcaption{display:block; background-color:var(--main-color); width:600px; height:200px; padding:10px}
+#container #slider figure figcaption a{color:var(--main-color); background-color:#333333;}
 #container #slider figure h2{padding-bottom:8px; border-bottom:1px solid #DEDEDE;}
 #container #slider figure footer{}
 
 /* ------Main Content-----*/
 
-#container #homepage{display:block; width:100%; line-height:1.6em;}
+#container #homepage{display:block; width:100%;}
 #container #homepage .services{margin:0; font-size:12px;}
 #container #homepage .services article{}
 #container #homepage .services article h2{margin-bottom:10px; text-transform:uppercase; font-size:14px; font-weight:bold;}
@@ -164,7 +164,7 @@ table#t01 tr:nth-child(odd), table#t02 tr:nth-child(odd) {
     background-color: #fff;
 }
 table#t01 th {
-    color: var(--font-color);
+    color: var(--secondary-font-color);
     background-color: #333333;
 }
 table#t02 th {
@@ -185,42 +185,45 @@ table#t02 {
     width: 600px;
 }
 
-
-
 #container #homepage a:hover figure figcaption {
-    background-color:rgba(10,10,10,0.9);
+    opacity:0.99;
 }
 /* common to both */
 #container #homepage figure{
-    margin:1px;
+    margin:0px;
+    padding:0px;
     position:relative;
 }
 #container #homepage figcaption{
-    color: #FFF;
-    font-family::var(--main-font-family); color:#919191;
+    font-family:var(--main-font-family);
+    color:var(--secondary-font-color);
     position: absolute;
-    background-color:rgba(10,10,10,0.8);
+    background-color:var(--main-color);
+    opacity:0.85;
     display:block;
-    vertical-align:middle;
 }
 
-#container #homepage .mainsynopsis figure{float:center;height:400px;width:630px;margin-right:0px;margin-bottom:20px; padding-botom:10px;}
+/* main synopsis on home page */
+
+#container #homepage .mainsynopsis figure{float:center;height:400px;width:630px;margin-bottom:20px;}
 #container #homepage .mainsynopsis img{width:630px;height:400px;}
 #container #homepage .mainsynopsis figcaption#title{top:5%; width:auto;min-width:200px;max-width:590px;height:30px;padding:10px;padding-bottom:25px; padding-left:30px;}
-#container #homepage .mainsynopsis figcaption#synopsis{bottom:0%; width:570px;height:45px;padding:30px;padding-top:10px;background-color:rgba(10,10,10,0.8);vertical-align:middle;}
-#container #homepage .mainsynopsis{background-color:rgba(50,50,50,1.0);margin-bottom:0px;}
-#container #homepage .mainsynopsis h1{font-size:20px;font-weight:bold;text-transform:uppercase;}
+#container #homepage .mainsynopsis figcaption#synopsis{bottom:0%; width:590px;height:40px;padding:20px;vertical-align:middle;}
+#container #homepage .mainsynopsis{background-color:var(--main-color);margin-bottom:0px;}
+#container #homepage .mainsynopsis h1{font-size:20px;}
 
+/* smaller synopses */
 
 #container #homepage .synopsis figure {float:left;margin-right:0px;display:block;height:200px;width:313px;margin:1px;}
 #container #homepage .synopsis figure img{float:left; width:313px;height:200px;}
-#container #homepage .synopsis figcaption {height: 50px;width: 305px;    padding: 4px;     bottom:30px;};
+#container #homepage .synopsis figcaption {height: 50px;width:305px;padding:4px;bottom:30px;};
 
-#container #homepage .synopsis{padding: 0px 0px 0px 0px;margin-top:30px;margin-bottom:100px;margin-left:0px;margin-right:0px;background-color:var(--main-bg-color);}
+#container #homepage .synopsis{padding: 0px 0px 0px 0px;margin-top:30px;margin-bottom:100px;margin-left:0px;margin-right:0px;background-color:var(--main-color);}
 
-#container #homepage .feature{background-color:#eee;}
+/*feature */
+#container #homepage .feature{background-color:var(--main-color);}
 #container #homepage .feature img{width:250px;float:left;margin:5px;}
-#container #homepage .feature h1{ padding:10px;background-color:var(--main-bg-color);width:100%;display:block;    box-sizing: border-box;
+#container #homepage .feature h1{ padding:10px;background-color:var(--main-color);width:100%;display:block;    box-sizing: border-box;
 margin-bottom:10px;}
 
 
@@ -234,7 +237,7 @@ margin-bottom:10px;}
     left:600px;
     float:left;
     display:block;
-    font-family:var(--main-font-family); color:#919191;
+    font-family:var(--main-font-family); color:var(--main-color);
     font-size:20px;
     font-style: italic;
     margin-top:30px;
@@ -245,9 +248,9 @@ margin-bottom:10px;}
 
 article.review img{padding:10px;margin-top:10px;}
 body.tinymce::first-letter, div.review::first-letter {
-  color: var(--secondary-font-color);
-  float: left;
-  font-family: Georgia;
+  color:var(--tertiary-font-color);
+  float:left;
+  font-family:var(--main-font-color);
   font-size: 75px;
   line-height: 60px;
   padding-top: 4px;
@@ -256,7 +259,7 @@ body.tinymce::first-letter, div.review::first-letter {
 }
 
 
-body.tinymce {color:#919191; background-color:#FFFF; font-family:var(--main-font-family)}
+body.tinymce {color:--var(--main-color); background-color:#FFFF; font-family:var(--main-font-family)}
 
 
 /*----------*/
