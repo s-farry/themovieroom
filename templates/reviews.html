@@ -19,7 +19,11 @@
 <table id="t02">
 <tr><th><h2>Latest Reviews</h2></th></tr>
 {% for review in reviews %}
-  <tr><td> <a href = "{% url 'films:detail' review.id %}">{{review.title}} ({{review.release_date.year}})</a></td></tr>
+  <tr><td> <a href = "{% url 'films:detail' review.id %}">{{review.title}} ({{review.release_date.year}})</a></td>
+    <td>
+{% for star in review.stars  %}{% if star == 1 %}★{% elif star == 0.5 %}1/2{% endif %}{% endfor %}
+</td>
+</tr>
   {% endfor %}
 </table>
 {% endif %}

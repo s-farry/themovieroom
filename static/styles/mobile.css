@@ -49,6 +49,10 @@ h3 {font-size:24px;}
     height:auto;
     width:auto;
     font-size:24px;
+    margin-top:0px;
+    padding:0px;
+    margin-bottom:0px;
+
 }
 
 div.review::first-letter {
