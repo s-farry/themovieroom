@@ -1,26 +1,29 @@
 
 /* override settings from layout.css to make them more mobile friendly */
 
+html{font-size:100%}
 
 
-div.wrapper{padding:5px;}
+#header, #container, #footer{width:auto;padding:1vw;}
 
-#header #hgroup img{margin:-25px 25px 5px 25px; height:200px}
-#header nav{display:block;width:100%; height:auto; margin:30px 5px 15px 5px; padding:10px 0px 60px 0px; border:2px solid #DEDEDE; font-size:46px;}
+#header #hgroup img{margin:5px 15px 5px 10px; height:20vw;}
+#header nav{display:block;width:100%; height:auto; margin:0; padding:0; padding-bottom:13px;padding-top:12px;margin-top:20px;margin-right:10px;border:1px solid #DEDEDE;font-size:1.25em;}
+#header nav li{display:inline; margin-right:10px; text-transform:uppercase;}
 
-#container #homepage .synopsis figure, #container #homepage .synopsis figure img{height:300px;width:470px;}
+
+#container #homepage .synopsis figure, #container #homepage .synopsis figure img{height:29vw;width:48vw;}
 #container #homepage .synopsis figcaption{
-    height: 90px;
-    width: 462px;
-    font-size:24px;
+    height: auto;
+    width: 46vw;
+    padding: 1vw;
 }
-#container #homepage .synopsis h1{font-size:24px;}
 
-#container #homepage .mainsynopsis figure{height:600px;width:945px;font-size:24px;}
-#container #homepage .mainsynopsis img{height:600px;width:945px;}
-#container #homepage .mainsynopsis figcaption#title{min-width:300px;max-width:885px;height:75px;font-size:24px;}
-#container #homepage .mainsynopsis figcaption#synopsis{width:905px;height:80px;text-align:middle;font-size:24px;padding:20px;}
-#container #homepage .mainsynopsis h1{font-size:40px;}
+.three_third {width:auto;}
+
+#container #homepage .mainsynopsis figure{width:98vw;height:63vw;}
+#container #homepage .mainsynopsis img{width:98vw;height:63vw;}
+#container #homepage .mainsynopsis figcaption#title{min-width:100px;max-width:885px;height:auto;padding:3vw;}
+#container #homepage .mainsynopsis figcaption#synopsis{width:92vw;text-align:middle;padding:3vw;}
 
 #container #homepage .feature{background-color:#eee;}
 #container #homepage .feature img{width:250px;float:left;margin:5px;}
@@ -29,39 +32,48 @@ margin-bottom:10px;}
 
 
 /*search button*/
-#header form{margin:25px 20px 5px 20px; padding:0;float:left;}
-#header form input{width:400px; padding:2px;border:2px solid var(--secondary-font-color);font-size:36px;}
-#header form #sf_submit{float:right;width:25px; margin-left:5px;font-size:36px; font-weight:bold;}
+#header form{margin:5px 5px 2px 0px; padding:0;float:right;}
+#header form input{width:35vw; padding:2px;border:1px solid var(--secondary-font-color);}
+#header form #sf_submit{float:right;width:18px; margin-left:5px; font-weight:bold;}
 #header form input[type=submit]{
-    background-size: 36px 36px;
+    background-size: 12px 12px;
     background-position:45% 50%;
-    min-width:60px;
+    min-width:18px;
 }
 
 
 
 /* review page */
-h2 {font-size:40px;}
-h3 {font-size:24px;}
-#container ul {font-size:12px; padding:0;}
-#container #slider figure img{float:left; width:945px; height:450px;}
+#container #slider figure img{float:left; width:96vw;height:43vw}
 #container #slider .quote {
     height:auto;
     width:auto;
-    font-size:24px;
     margin-top:0px;
     padding:0px;
     margin-bottom:0px;
+    font-size:0.8125rem;
 
 }
 
 div.review::first-letter {
-  font-size: 150px;
   padding-top: 16px;
   padding-right: 16px;
   padding-left: 6px;
 }
 
 #homepage p{
-    padding-bottom:40px;
+    padding-bottom:3vw;
 }
+
+table#t03 {
+    padding:0px;
+    border: 2px;
+    width: 75vw;
+}
+
+
+#footer{font-size:0.5em;}
+
+#container #homepage .synopsis figcaption {font-size:0.75em;}
+#container #homepage .mainsynopsis figcaption#synopsis {font-size:0.75em;}
+#container #homepage .mainsynopsis figcaption#title {font-size:1.0em;}

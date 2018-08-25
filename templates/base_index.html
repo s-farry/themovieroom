@@ -39,13 +39,14 @@
 
 <div class = "mainsynopsis"><a href="{% url 'films:detail' mainid %}">
 <figure><img src = "{{ review.image_small.url }}"><br>
-      <figcaption id = "title"> <h1> {{review.title}} ({{review.release_date.year}}) </h1>
+  <figcaption id = "title"> <h1> {{review.title}} ({{review.release_date.year}}) </h1>
+    <div id = "stars">
         {% for star in review.stars  %}
         {% if star == 1 %} ★
         {% elif star == 0.5 %} 1/2
         {% endif %}
         {% endfor %}
-	
+	</div>
       </figcaption>
       <figcaption id = "synopsis">
         {{review.synopsis}}
@@ -63,11 +64,13 @@
       <img src = "{{review.image_small.url}}">
       <figcaption>
         {{review.title}} ({{review.release_date.year}})<br>
+	<div id = "stars">
         {% for star in review.stars  %}
         {% if star == 1 %} ★
         {% elif star == 0.5 %} 1/2
         {% endif %}
         {% endfor %}
+	</div>
       </figcaption>
     </figure>
   </a>
