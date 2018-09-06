@@ -45,15 +45,28 @@ margin-bottom:10px;}
 
 /* review page */
 #container #slider figure img{float:left; width:96vw;height:43vw}
-#container #slider .quote {
+blockquote {
     height:auto;
     width:auto;
     margin-top:0px;
     padding:0px;
     margin-bottom:0px;
     font-size:0.8125rem;
-
+    display:inline;
 }
+
+
+/*------ review---*/
+blockquote:before {
+    font-family: Georgia, serif;
+    line-height: 1;
+    font-size:2rem;
+}
+blockquote:after {
+    line-height: 1;
+    font-size:2rem;
+}
+
 
 div.review::first-letter {
   padding-top: 16px;
