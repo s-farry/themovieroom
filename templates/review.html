@@ -8,7 +8,7 @@
 <meta property="og:title" content="{{ review.title }} ({{ review.release_date.year }}) | The Movie Room" />
 <meta property="og:url" content="https://www.themovieroom.co.uk/" />
 <meta property="og:description" content="{% for star in review.stars  %}{% if star == 1 %} ★  {% elif star == 0.5 %} 1/2 {% endif %} {% endfor %}">
-{% if review.image_smalle %}
+{% if review.image_small %}
 <meta property="og:image" content="{{ review.image_small.url }}" />
 {% endif %}
 
@@ -20,6 +20,7 @@
 <figure><img src="{{ review.image.url }}" alt=""></figure>
 {% endif %}
 </article>
+
 <blockquote>
 {{review.quote}}
 </blockquote>
@@ -27,7 +28,8 @@
 {% endblock %}
 
   {% block body %}
-  <article class = "review">
+
+<article class = "review">
 <h2>{{ review.title }} ( {{ review.release_date.year }} )</h2>
 <h3><span id = "stars">{% for star in review.stars  %}{% if star == 1 %}★{% elif star == 0.5 %}1/2{% endif %}{% endfor %}</span> &nbsp; | &nbsp; {{review.published_date.date}}</h3>
 {% if request|is_mobile %}

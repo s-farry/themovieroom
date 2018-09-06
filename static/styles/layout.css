@@ -11,7 +11,7 @@ html{overflow-y:scroll; font-size:100%} /* Forces a scrollbar when the viewport 
 
 /* set up some variables to use */
 :root {
-    --main-font-family:"Lato", sans-serif;
+    --main-font-family:"Karla", sans-serif;
     --main-color: #333333;
     --secondary-color:#979797;
     --secondary-font-color:#C0BAB6;
@@ -199,7 +199,6 @@ table#t03 {
     background-color:var(--main-color);
     opacity:0.85;
     display:block;
-    
 }
 
 /* main synopsis on home page */
@@ -228,23 +227,26 @@ margin-bottom:10px;}
 
 #stars {color:var(--tertiary-font-color);}
 
-
+blockquote {margin:0;padding:0}
 /*------ review---*/
+
+
 blockquote:before {
     font-family: Georgia, serif;
-    line-height: 1;
+    line-height: 0.75;
     font-size:6em;
     top: 0;
     left: 0;
     content: "\201C";
 }
+
 blockquote:after {
     font-family: Georgia, serif;
-    /*position: absolute;*/
-   /* display: block; don't use this, it raised the quote too high from the bottom - defeated line-height?
+    /*position: absolute;
+   display: block; don't use this, it raised the quote too high from the bottom - defeated line-height?*/
     float:right;
     font-size:6em;
-  */
+  
     float:right;
     line-height: 1;
     font-size:6em;
@@ -252,37 +254,38 @@ blockquote:after {
     bottom:-0.5em;
     content: "\201D";
 }
+
 blockquote {
     display:block;
     font-family:var(--main-font-family);
     color:var(--main-color);
     font-size:1.25em;
     font-style: italic;
-    margin-top:30px;
-    padding:10px;
+    /*margin-top:30px;*/
     margin-bottom:10px;
     line-height:1.45;
     position:relative;
+    padding-top:10px;
 }
-
+/*
 blockquote footer {
     padding: 0 2em 0 0;
     text-align:right;
 }
+
 blockquote cite:before {
     content: "\2013";
 }
-
+*/
 
 article.review img{padding:10px;margin-top:10px;}
 body.tinymce::first-letter, div.review::first-letter {
   color:var(--tertiary-font-color);
   font-family:var(--main-font-color);
-  font-size:5em;
-  padding:0;
-  margin:0;
   float:left;
-  display:block;
+  font-size:5em;
+  line-height:0.7;
+  padding:0.1em;
 }
 
 
