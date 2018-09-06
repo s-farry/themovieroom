@@ -18,6 +18,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:locale" content="en_GB" />
 <meta charset="iso-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="{% static 'styles/layout.css' %}" type="text/css"/>
 {% if request|is_mobile %}
 <link rel="stylesheet" href="{% static 'styles/mobile.css' %}" type="text/css"/>
@@ -42,6 +43,7 @@
         <li><a href="{% url 'films:index' %}">Reviews</a></li>
         <li><a href="{% url 'features' %}">Features</a></li>
       </ul>
+      </nav>
     <form action="{% url 'SearchListView' %}" method="get">
       <fieldset>
         <legend>Search:</legend>
@@ -49,7 +51,6 @@
         <input type="submit" id="sf_submit" value="">
       </fieldset>
     </form>
-</nav>
   </header>
 </div>
 <!-- content -->

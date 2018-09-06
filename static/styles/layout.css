@@ -6,7 +6,7 @@ Author URI: http://www.os-templates.com/
 Licence: <a href="http://www.os-templates.com/template-terms">Website Template Licence</a>
 */
 
-html{overflow-y:scroll;} /* Forces a scrollbar when the viewport is larger than the websites content - CSS3 */
+html{overflow-y:scroll; font-size:100%} /* Forces a scrollbar when the viewport is larger than the websites content - CSS3 */
 
 
 /* set up some variables to use */
@@ -19,8 +19,7 @@ html{overflow-y:scroll;} /* Forces a scrollbar when the viewport is larger than 
 
 }
 
-body{font-size:13px;color:--var(-secondary-font-color); background-color:var(--main-color); font-family:var(--main-font-family)}
-
+body{font-size:0.8125em;color:--var(-secondary-font-color); background-color:var(--main-color); font-family:var(--main-font-family); padding:0px; margin:0px;}
 
 .clear:after{content:"."; display:block; height:0; clear:both; visibility:hidden; line-height:0;}
 .clear{display:block; clear:both;}
@@ -43,10 +42,6 @@ img{margin:0; padding:0; border:none; line-height:normal; vertical-align:middle;
 
 address, article, aside, figcaption, figure, footer, header, nav, section{display:block; margin:0; padding:0;}
 
-q{display:block; padding:0 10px 8px 10px; color:--var(--secondary-color); background-color:#ECECEC; font-style:italic; line-height:normal;}
-q:before{content:'“ '; font-size:26px;}
-q:after{content:' „'; font-size:26px; line-height:0;}
-
 /* ----------------------------------------------Wrapper-------------------------------------*/
 
 div.wrapper{display:block; width:100%; margin:0; padding:0; text-align:left;}
@@ -55,7 +50,7 @@ div.wrapper{display:block; width:100%; margin:0; padding:0; text-align:left;}
 .row2{color:var(--main-color); background-color:#FFFFFF;}
 .row2 a{color:var(--main-color);}
 .row2 a:hover {color:var(--tertiary-font-color);}
-.row3, .row3 a{color:var(--main-color); background-color:var(--main-color);}
+.row3, .row3 a{color:var(--secondary-font-color); background-color:var(--main-color);}
 
 /*----------------------------------------------Generalise-------------------------------------*/
 
@@ -63,17 +58,14 @@ div.wrapper{display:block; width:100%; margin:0; padding:0; text-align:left;}
 
 nav ul{margin:0; padding:0; list-style:none;}
 
-h1, h2, h3, h4, h5, h6{margin:0; padding:0; font-size:20px; font-weight:normal; font-style:normal; line-height:normal;}
+h1, h2{margin:0; padding:0; font-size:1.25em; font-weight:normal; font-style:normal; line-height:normal;}
+h3, h4, h5, h6{margin:0; padding:0; font-size:1.0em; font-weight:normal; font-style:normal; line-height:normal;}
 
 address{font-style:normal;}
 
-blockquote, q{display:block; padding:8px 10px; color:--var(--secondary-color); background-color:#ECECEC; font-style:italic; line-height:normal;}
-blockquote:before, q:before{content:'“ '; font-size:26px;}
-blockquote:after, q:after{content:' „'; font-size:26px; line-height:0;}
-
 form, fieldset, legend{margin:0; padding:0; border:none;}
 legend{display:none;}
-input, textarea, select{font-size:12px; font-family:Georgia,"Times New Roman",Times,serif;}
+input, textarea, select{font-size:0.75em; font-family:Georgia,"Times New Roman",Times,serif;}
 
 .one_third, .two_third, .three_third{display:block; float:left; margin:0 30px 0 0;}
 .one_third{width:300px;}
@@ -93,17 +85,17 @@ input, textarea, select{font-size:12px; font-family:Georgia,"Times New Roman",Ti
 /* here we're mainly positioning the image */
 
 #header #hgroup{float:left;padding-left:0px;padding-bottom:0px;}
-#header #hgroup img{margin:-25px 25px 5px 25px; height:100px}
+#header #hgroup img{margin:-25px 025px 5px 25px; height:100px}
 #header #hgroup h1, #header #hgroup h2{font-weight:normal; text-transform:none;}
-#header #hgroup h1{font-size:36px;}
-#header #hgroup h2{font-size:13px;}
+#header #hgroup h1{font-size:2.25em;}
+#header #hgroup h2{font-size:0.8125em;}
 
 
 
 /* here we position the search form */
-#header form{margin:25px 20px 5px 20px; padding:0;float:right;}
-#header form input{dispay:block; width:150px; margin:0; padding:5px; background-color:var(--main-color); border:1px solid #DEDEDE; font-family:var(--main-font-family); color:#DEDEDE;}
-#header form #sf_submit{float:right;width:25px; margin-left:5px;font-size:12px; font-weight:bold; text-transform:uppercase; cursor:pointer; font-family:var(--main-font-family); background-color:var(--main-color);}
+#header form{margin:-15px 20px 5px 20px; padding:0;float:right;}
+#header form input{dispay:block; width:20px; margin:0; padding:5px; background-color:var(--main-color); border:1px solid #DEDEDE; font-family:var(--main-font-family); color:#DEDEDE;font-size:1.0em; width:160px;}
+#header form #sf_submit{float:right;width:25px; margin-left:5px;font-size:1.0em; font-weight:bold; text-transform:uppercase; cursor:pointer; font-family:var(--main-font-family); background-color:var(--main-color);}
 #header form input[type=submit]{
     background: url(/static/images/search.png);
     background-size: 16px 16px;
@@ -115,8 +107,8 @@ input, textarea, select{font-size:12px; font-family:Georgia,"Times New Roman",Ti
 /* and finally the navigation bar */
 /* maybe I should just have given this a height... */
 
-#header nav{display:block;width:100%; margin:30px 5px 5px 5px; padding:10px 0px 30px 0px; border:1px solid #DEDEDE; font-size:16px;} /*padding is tlbr */
-#header nav ul{display:inline;float:left;}
+#header nav{display:block;width:100%; margin:30px 5px 5px 5px; padding:10px 0px 10px 0px; border:1px solid #DEDEDE; font-size:1.5em; height:auto;} /*padding is tlbr */
+/*#header nav ul{display:inline;float:left;}*/
 #header nav li{display:inline; margin-right:25px; text-transform:uppercase;}
 #header nav li.last{margin-right:0;}
 #header nav li a{}
@@ -146,32 +138,32 @@ ul {
 /* ------Main Content-----*/
 
 #container #homepage{display:block; width:100%;}
-#container #homepage .services{margin:0; font-size:12px;}
+#container #homepage .services{margin:0; font-size:0.75em;}
 #container #homepage .services article{}
-#container #homepage .services article h2{margin-bottom:10px; text-transform:uppercase; font-size:14px; font-weight:bold;}
+#container #homepage .services article h2{margin-bottom:10px; text-transform:uppercase; font-size:1em; font-weight:bold;}
 #container #homepage .services article img{float:left; padding:4px; border:1px solid #D6D6D6;}
 #container #homepage .services article p{display:block; float:right; width:200px; margin:0; padding:0;}
-#container #homepage .services article footer{padding-top:10px; clear:both;}
+#container #homepage .services article footer{padding-top:10px; clear:both;color:var(--secondary-font-color)}
 
 #container #homepage .spacer{display:block; width:100%; height:30px; margin:0; padding:0; clear:both;}
 
 img#profile { width: 200px; }
 
-table#t01 tr:nth-child(even), table#t02 tr:nth-child(even) {
+table#t01 tr:nth-child(even), table#t02 tr:nth-child(even), table#t03 tr:nth-child(even) {
     background-color: #eee;
 }
-table#t01 tr:nth-child(odd), table#t02 tr:nth-child(odd) {
+table#t01 tr:nth-child(odd), table#t02 tr:nth-child(odd), table#t03 tr:nth-child(odd) {
     background-color: #fff;
 }
 table#t01 th {
     color: var(--secondary-font-color);
     background-color: #333333;
 }
-table#t02 th {
+table#t02 th, table#t03 th {
     color: var(--background-color);
 }
 
-table#t01 td, th, table#t02 td, th {
+table#t01 td, th, table#t02 td, th table #t03 td,th {
     padding:5px;
 }
 table#t01 {
@@ -184,6 +176,12 @@ table#t02 {
     border: 2px;
     width: 600px;
 }
+table#t03 {
+    padding:0px;
+    border: 2px;
+    width: 900px;
+}
+
 
 #container #homepage a:hover figure figcaption {
     opacity:0.99;
@@ -201,22 +199,23 @@ table#t02 {
     background-color:var(--main-color);
     opacity:0.85;
     display:block;
+    
 }
 
 /* main synopsis on home page */
 
 #container #homepage .mainsynopsis figure{float:center;height:400px;width:630px;margin-bottom:20px;}
 #container #homepage .mainsynopsis img{width:630px;height:400px;}
-#container #homepage .mainsynopsis figcaption#title{top:5%; width:auto;min-width:200px;max-width:590px;height:30px;padding:10px;padding-bottom:25px; padding-left:30px;}
+#container #homepage .mainsynopsis figcaption#title{top:5%; width:auto;min-width:200px;max-width:590px;height:30px;padding:10px;padding-bottom:25px; padding-left:30px;border-top-right-radius:10px;border-bottom-right-radius:10px;text-transform:uppercase;}
 #container #homepage .mainsynopsis figcaption#synopsis{bottom:0%; width:590px;height:40px;padding:20px;vertical-align:middle;}
 #container #homepage .mainsynopsis{background-color:var(--main-color);margin-bottom:0px;}
-#container #homepage .mainsynopsis h1{font-size:20px;}
+#container #homepage .mainsynopsis h1{font-size:1.25em;}
 
 /* smaller synopses */
 
 #container #homepage .synopsis figure {float:left;margin-right:0px;display:block;height:200px;width:313px;margin:1px;}
 #container #homepage .synopsis figure img{float:left; width:313px;height:200px;}
-#container #homepage .synopsis figcaption {height: 50px;width:305px;padding:4px;bottom:30px;};
+#container #homepage .synopsis figcaption {height: 50px;width:299px;padding:4px;bottom:30px;padding-left:10px;};
 
 #container #homepage .synopsis{padding: 0px 0px 0px 0px;margin-top:30px;margin-bottom:100px;margin-left:0px;margin-right:0px;background-color:var(--main-color);}
 
@@ -227,7 +226,7 @@ table#t02 {
 margin-bottom:10px;}
 
 
-
+#stars {color:var(--tertiary-font-color);}
 
 
 /*------ review---*/
@@ -237,8 +236,9 @@ margin-bottom:10px;}
     left:600px;
     float:left;
     display:block;
-    font-family:var(--main-font-family); color:var(--main-color);
-    font-size:20px;
+    font-family:var(--main-font-family);
+    color:var(--main-color);
+    font-size:1.25em;
     font-style: italic;
     margin-top:30px;
     padding:10px;
@@ -247,24 +247,24 @@ margin-bottom:10px;}
 
 
 article.review img{padding:10px;margin-top:10px;}
-body.tinymce::first-letter, div.review::first-letter {
+/*body.tinymce::first-letter, div.review::first-letter {
   color:var(--tertiary-font-color);
   float:left;
   font-family:var(--main-font-color);
-  font-size: 75px;
-  line-height: 60px;
-  padding-top: 4px;
-  padding-right: 8px;
-  padding-left: 3px;
-}
+  font-size:10em;
+  padding-top: 0.1em;
+  padding-right: 0.1em;
+  padding-left: 0.1em;
+  padding-bottom: 0.1em;
+}*/
 
 
-body.tinymce {color:--var(--main-color); background-color:#FFFF; font-family:var(--main-font-family)}
+body.tinymce {color:var(--main-color); background-color:#FFFF; font-family:var(--main-font-family)}
 
 
 /*----------*/
 
 /*----------------------------------------------Footer-------------------------------------*/
 
-#footer{padding:20px 0;}
+#footer{padding:20px 0;color:var(--seconndary-font-color)}
 #footer p{margin:0; padding:0;}

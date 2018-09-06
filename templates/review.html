@@ -24,9 +24,10 @@
 
 {% endblock %}
 
-{% block body %}
+  {% block body %}
+  <article class = "review">
 <h2>{{ review.title }} ( {{ review.release_date.year }} )</h2>
-<h3>{% for star in review.stars  %}{% if star == 1 %}★{% elif star == 0.5 %}1/2{% endif %}{% endfor %} &nbsp; | &nbsp; {{review.published_date.date}}</h3>
+<h3><span id = "stars">{% for star in review.stars  %}{% if star == 1 %}★{% elif star == 0.5 %}1/2{% endif %}{% endfor %}</span> &nbsp; | &nbsp; {{review.published_date.date}}</h3>
 {% if request|is_mobile %}
 <p>
 Director: {% for person in review.director.all %} {{ person.first_name }} {{person.last_name}} {% endfor %} </br>
@@ -41,7 +42,10 @@ Starring:
 {% endfor %}
 </p>
 {% endif %}
-<div class = "review">{{review.body | safe}}</div>
+<div class = "review">
+  {{review.body | safe}}
+  </div>
+  </article>
 {% endblock %}
 
 {% block sidebar %}
