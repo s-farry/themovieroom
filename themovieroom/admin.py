@@ -272,7 +272,7 @@ class ReviewAdmin(admin.ModelAdmin):
                     dob = tmdb_person['birthday']
                 g = 'M'
                 if tmdb_person['gender'] == 1: g = 'F'
-                pp = person(first_name = first_name.decode('utf-8'), last_name = last_name.decode('utf-8'), date_of_birth = dob, gender = g, imdb = pid)
+                pp = person(first_name = first_name, last_name = last_name, date_of_birth = dob, gender = g, imdb = tmdb_person['imdb_id'])
                 if 'deathday' in tmdb_person.keys() and tmdb_person['deathday'] is not None:
                     pp.date_of_death = tmdb_person['deathday']
                 pp.save()

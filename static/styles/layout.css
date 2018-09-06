@@ -230,11 +230,29 @@ margin-bottom:10px;}
 
 
 /*------ review---*/
-#container #slider .quote {
-    height:200px;
-    width:280px;
-    left:600px;
-    float:left;
+blockquote:before {
+    font-family: Georgia, serif;
+    line-height: 1;
+    font-size:6em;
+    top: 0;
+    left: 0;
+    content: "\201C";
+}
+blockquote:after {
+    font-family: Georgia, serif;
+    /*position: absolute;*/
+   /* display: block; don't use this, it raised the quote too high from the bottom - defeated line-height?
+    float:right;
+    font-size:6em;
+  */
+    float:right;
+    line-height: 1;
+    font-size:6em;
+    right:0;
+    bottom:-0.5em;
+    content: "\201D";
+}
+blockquote {
     display:block;
     font-family:var(--main-font-family);
     color:var(--main-color);
@@ -242,21 +260,30 @@ margin-bottom:10px;}
     font-style: italic;
     margin-top:30px;
     padding:10px;
-    margin-bottom:30px;
+    margin-bottom:10px;
+    line-height:1.45;
+    position:relative;
+}
+
+blockquote footer {
+    padding: 0 2em 0 0;
+    text-align:right;
+}
+blockquote cite:before {
+    content: "\2013";
 }
 
 
 article.review img{padding:10px;margin-top:10px;}
-/*body.tinymce::first-letter, div.review::first-letter {
+body.tinymce::first-letter, div.review::first-letter {
   color:var(--tertiary-font-color);
-  float:left;
   font-family:var(--main-font-color);
-  font-size:10em;
-  padding-top: 0.1em;
-  padding-right: 0.1em;
-  padding-left: 0.1em;
-  padding-bottom: 0.1em;
-}*/
+  font-size:5em;
+  padding:0;
+  margin:0;
+  float:left;
+  display:block;
+}
 
 
 body.tinymce {color:var(--main-color); background-color:#FFFF; font-family:var(--main-font-family)}
