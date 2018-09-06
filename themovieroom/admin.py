@@ -216,11 +216,11 @@ class ReviewAdmin(admin.ModelAdmin):
                     first_name=names[0]
                     last_name=names[1]
                 if len(names) == 3:
-                    first_name=names[0] + names[1]
+                    first_name=names[0] + " " + names[1]
                     last_name = names[2]
                 elif len(names) == 4:
-                    first_name=names[0] + names[1]
-                    last_name = names[2] + names[3]
+                    first_name=names[0] + " " + names[1]
+                    last_name = names[2] + " " + names[3]
                 else:
                     #don't have a better idea but this
                     first_name = names[0]
@@ -236,7 +236,7 @@ class ReviewAdmin(admin.ModelAdmin):
                 if 'deathday' in tmdb_person.keys() and tmdb_person['deathday'] is not None:
                     pp.date_of_death = tmdb_person['deathday']
                 pp.save()
-                self.message_user(request, 'added %s'%(pp.name()))
+                #self.message_user(request, 'added %s'%(pp.name()))
                 cast += [ pp ]
         
         for i in range(len(tmdb_crew)):
