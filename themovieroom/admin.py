@@ -141,7 +141,7 @@ class ReviewAdminForm(forms.ModelForm):
     body = forms.CharField(max_length= 10000, widget = TinyMCE(attrs = {'rows' : '30', 'cols' : '30', 'content_style' : "color:#FFFF00", 'body_class': 'review', 'body_id': 'review',}), label='Review')
 
     synopsis = forms.CharField(max_length= 1000, widget = forms.Textarea(attrs = {'rows' : '10', 'cols' : '90'}))
-    quote = forms.CharField(max_length= 500, widget = forms.Textarea(attrs = {'rows' : '2', 'cols' : '90'}))
+    quote = forms.CharField(max_length= 500, required = False, widget = forms.Textarea(attrs = {'rows' : '2', 'cols' : '90'}))
     img_crop = forms.ChoiceField(initial=0, choices=LOCATION_CHOICES)
     img_crop_small = forms.ChoiceField(initial=0, choices=LOCATION_CHOICES)
     ncast = forms.ChoiceField(initial=5, choices = NCAST_CHOICES, label='Cast to Show')
