@@ -28,6 +28,7 @@ class person(models.Model):
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     imdb = models.CharField(max_length = 7, default='')
     image = models.ImageField(blank=True, upload_to = 'images')
+    tmdb = models.IntegerField(default = 0, blank = True)
     def age(self):
         today = date.today()
         if self.date_of_death:
