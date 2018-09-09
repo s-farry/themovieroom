@@ -35,6 +35,17 @@ class person(models.Model):
         return today.year - self.date_of_birth.year - ((today.month, today.day) < (self.date_of_birth.month, self.date_of_birth.day))
     def name(self):              # __unicode__ on Python 2
         return "%s %s" % (self.first_name, self.last_name)
+    def reviewed_films(self):
+        films = []
+        for f in self.cast.all():
+            if f.review and f.review.status=='p':
+                films += [ f ]
+        for f in self.director.all():
+            if f.review and f.review.status=='p':
+                films += [ f ]
+        
+        return films
+
     def __str__(self):              # __unicode__ on Python 2
         return "%s %s" % (self.first_name, self.last_name)
 
@@ -52,7 +63,7 @@ class film(models.Model):
 class review(film):
     body = models.CharField(max_length= 10000)
     synopsis = models.CharField(max_length = 1000, null=True, blank = True, default = '')
-    quote = models.CharField(max_length = 500, default = '', null=True, blank=True)
+    quote = models.CharField(max_length = 500, null=True, blank=True)
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
     published_date = models.DateTimeField(auto_now=True)

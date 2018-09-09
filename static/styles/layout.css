@@ -251,7 +251,6 @@ blockquote:after {
     line-height: 1;
     font-size:6em;
     right:0;
-    bottom:-0.5em;
     content: "\201D";
 }
 
@@ -279,9 +278,9 @@ blockquote cite:before {
 */
 
 article.review img{padding:10px;margin-top:10px;}
-body.tinymce::first-letter, div.review::first-letter {
+div.review::first-letter {
   color:var(--tertiary-font-color);
-  font-family:var(--main-font-color);
+  font-family:"Karla", serif;
   float:left;
   font-size:5em;
   line-height:0.7;

@@ -20,10 +20,11 @@
 <figure><img src="{{ review.image.url }}" alt=""></figure>
 {% endif %}
 </article>
-
+{% if review.quote %}
 <blockquote>
 {{review.quote}}
 </blockquote>
+{% endif %}
 
 {% endblock %}
 

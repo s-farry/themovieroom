@@ -25,7 +25,7 @@ DOB: {{person.date_of_birth}} ( Age {{ person.age }} )<br>
 {% endif %}
 {%if person.cast.count > 0 or  person.director.count > 0 %}
 Reviewed Filmography:<br>
-{% for film in person.cast.all %}
+{% for film in person.reviewed_films %}
    <a href = "{% url 'films:detail' film.id %}">{{film.title}} ({{film.release_date.year}})</a><br>
   {% endfor %}
    {% for film in person.director.all %}   
