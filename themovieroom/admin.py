@@ -26,6 +26,7 @@ import os
 tmdb.API_KEY = os.environ['TMDB_API_KEY']
 from PIL import Image
 
+
 def crop_image(path, home_page = False, loc = 0):
     im = Image.open(path)
     width, height = im.size   # Get dimensions
@@ -104,6 +105,17 @@ from django import forms
 from films.models import *
 #from froala_editor.widgets import FroalaEditor
 from tinymce.widgets import TinyMCE
+
+import re
+
+def get_short_link(obj):
+    title = obj.title.lower()
+    year = str(obj.release_date.year)
+    short_title = re.sub(r'[^\w\s]','',title).replace(' ','-')[0:35]
+    short_title = short_title + '-' + year
+    return short_title
+
+
 
 LOCATION_CHOICES = (
     (0, 'Center'),
@@ -300,6 +312,7 @@ class ReviewAdmin(admin.ModelAdmin):
             obj.tmdb = m['id']
             obj.runtime = self.tmdb_movie.info()['runtime']
             obj.release_date = m['release_date']
+            obj.link_title = get_short_link(obj)
             self.message_user(request, 'Saving imdb id tt%s as %s'%(obj.imdb,obj.title))
         super(ReviewAdmin, self).save_model(request, obj, form, change)
         if not change:

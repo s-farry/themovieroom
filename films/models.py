@@ -67,7 +67,8 @@ class review(film):
     quote = models.CharField(max_length = 500, null=True, blank=True)
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
-    published_date = models.DateTimeField(auto_now=True)
+    published_date = models.DateTimeField()
+    link_title = models.CharField(max_length = 40, default = '')
     RATING_CHOICES = (
         (0, 0),
         (1, 0.5),
@@ -88,6 +89,10 @@ class review(film):
 
     def __str__(self):
         return self.title
+    def short_title(self):
+        short = self.title.lower.replace(' ','_')
+        return short
+
     def stars(self):
         starred = []
         if (self.rating <= 10):
