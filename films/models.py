@@ -67,7 +67,7 @@ class review(film):
     quote = models.CharField(max_length = 500, null=True, blank=True)
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
-    published_date = models.DateTimeField()
+    published_date = models.DateTimeField(null = True)
     link_title = models.CharField(max_length = 40, default = '')
     RATING_CHOICES = (
         (0, 0),
@@ -116,7 +116,7 @@ class feature(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='d')
-    published_date = models.DateTimeField(auto_now=True)
+    published_date = models.DateTimeField(auto_now=True, null = True)
 
 
     def name(self):              # __unicode__ on Python 2

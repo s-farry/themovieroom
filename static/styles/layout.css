@@ -244,7 +244,7 @@ blockquote:after {
     font-family: Georgia, serif;
     /*position: absolute;
    display: block; don't use this, it raised the quote too high from the bottom - defeated line-height?*/
-    float:right;
+    /*float:right;*/
     font-size:6em;
   
     float:right;
