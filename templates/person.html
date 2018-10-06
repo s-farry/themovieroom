@@ -28,8 +28,6 @@ Reviewed Filmography:<br>
 {% for film in person.reviewed_films %}
    <a href = "{% url 'films:detail' film.id %}">{{film.title}} ({{film.release_date.year}})</a><br>
   {% endfor %}
-   {% for film in person.director.all %}   
-   <a href = "{% url 'films:detail' film.id %}">{{film.title}} ({{film.release_date.year}})</a><br>
 {% endfor %}
 {% endif %}
 </ul>
