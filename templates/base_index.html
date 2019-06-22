@@ -6,7 +6,6 @@
 
 
 {% block sidebar %}
-
 <table id = "t01"><tbody>
     <tr><th><img height=18px src = {% static 'images/incinema.png' %}>&nbsp;&nbsp;In Cinemas Now</th></tr>
     <tr><td> {% block cinema1 %}{% endblock %}</td></tr>
@@ -40,10 +39,10 @@
 <div class = "mainsynopsis"><a href="{% url 'films:title' review.link_title %}">
 <figure><img src = "{{ review.image_small.url }}"><br>
   <figcaption id = "title"> <h1> {{review.title}} ({{review.release_date.year}}) </h1>
-    <div id = "stars">
         {% for star in review.stars  %}
-        {% if star == 1 %} ★
-        {% elif star == 0.5 %} 1/2
+        {% if star == 1 %} <span class="star-icon full">&#9734;</span>
+        {% elif star == 0.5 %} <span class="star-icon half">&#9734;</span>
+        {% elif star == 0 %} <span class="star-icon">&#9734;</span>
         {% endif %}
         {% endfor %}
 	</div>
@@ -56,7 +55,6 @@
 {% endif %}
 {% endfor %}
 <div class = "synopsis">
-  
   {% for review in reviews %}
   {% if review.id != mainid  %}
   <a href = "{% url 'films:title' review.link_title %}">
@@ -66,8 +64,9 @@
         {{review.title}} ({{review.release_date.year}})<br>
 	<div id = "stars">
         {% for star in review.stars  %}
-        {% if star == 1 %} ★
-        {% elif star == 0.5 %} 1/2
+        {% if star == 1 %} <span class="star-icon full">&#9734;</span>
+        {% elif star == 0.5 %} <span class="star-icon half">&#9734;</span>
+        {% elif star == 0 %} <span class="star-icon">&#9734;</span>
         {% endif %}
         {% endfor %}
 	</div>

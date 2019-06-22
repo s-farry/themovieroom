@@ -134,7 +134,7 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_URL = '/static/'
-STATIC_ROOT = "/home/themovie/public_html/static/"
+STATIC_ROOT = os.path.join(os.environ["HOME"], "public_html/static/")
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(os.environ["HOME"], "public_html/media/")
