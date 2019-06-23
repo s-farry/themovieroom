@@ -225,16 +225,20 @@ class ReviewAdmin(admin.ModelAdmin):
             else:
                 names = tmdb_person['name'].split()
                 #let's make a guess on this...
-                if len(names) == 2:
+                last_name, first_name = '', ''
+                if len(names) == 1:
+                    last_name = names[0]
+                    first_name = ''
+                elif len(names) == 2:
                     first_name=names[0]
                     last_name=names[1]
-                if len(names) == 3:
+                elif len(names) == 3:
                     first_name=names[0] + " " + names[1]
                     last_name = names[2]
                 elif len(names) == 4:
                     first_name=names[0] + " " + names[1]
                     last_name = names[2] + " " + names[3]
-                else:
+                elif len(names) != 0:
                     #don't have a better idea but this
                     first_name = names[0]
                     last_name = names[1]

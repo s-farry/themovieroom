@@ -62,7 +62,7 @@ def print_movie(block, f,m):
             if star == 1: f.write("★")
             elif star == 0.5: f.write("1/2")
     else:
-        f.write(m['title'])
+        f.write(m['title'].encode('utf-8'))
     f.write('{% endblock %}\n')
     return out
 

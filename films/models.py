@@ -42,7 +42,7 @@ class person(models.Model):
             if f.review and f.review.status=='p':
                 films += [ f ]
         for f in self.director.all():
-            if f.review and f.review.status=='p':
+            if f.review and f.review not in self.cast.all() and f.review.status=='p':
                 films += [ f ]
         
         return films
