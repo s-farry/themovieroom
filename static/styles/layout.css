@@ -228,17 +228,14 @@ margin-bottom:10px;}
 #stars {color:var(--tertiary-font-color);}
 
 .star-icon {
-    color:var(--tertiary-font-color);
     position: relative;
 }
 .star-icon.full:before {
-    color:var(--tertiary-font-color);
     content: '\2605'; /* Full star in UTF-8 */
     position: absolute;
     left: 0;
 }
 .star-icon.half:before {
-    color:var(--tertiary-font-color);
     content: '\2605'; /* Full star in UTF-8 */
     position: absolute;
     left: 0;

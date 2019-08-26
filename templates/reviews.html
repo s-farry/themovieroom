@@ -21,7 +21,12 @@
 {% for review in reviews %}
   <tr><td> <a href = "{% url 'films:title' review.link_title %}">{{review.title}} ({{review.release_date.year}})</a></td>
     <td>
-{% for star in review.stars  %}{% if star == 1 %}★{% elif star == 0.5 %}1/2{% endif %}{% endfor %}
+    {% for star in review.stars  %}
+    {% if star == 1 %} <span class="star-icon full">&#9734;</span>
+    {% elif star == 0.5 %} <span class="star-icon half">&#9734;</span>
+    {% elif star == 0 %} <span class="star-icon">&#9734;</span>
+    {% endif %}
+    {% endfor %}
 </td>
 </tr>
   {% endfor %}
