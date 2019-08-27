@@ -219,8 +219,10 @@ class ReviewAdmin(admin.ModelAdmin):
             c = tmdb_cast[i]
             pid = c['id']
             tmdb_person = tmdb.People(pid).info()
-            if len(person.objects.filter(imdb = tmdb_person['imdb_id'])) > 0:
-                pp = person.objects.get(imdb = tmdb_person['imdb_id'])
+            print tmdb_person['name']
+            if len(person.objects.filter(tmdb = tmdb_person['id'])) > 0:
+                pp = person.objects.get(tmdb = tmdb_person['id'])
+                self.message_user(request, 'added %s'%(pp.name()))
                 cast += [ pp ]
             else:
                 names = tmdb_person['name'].split()
@@ -249,11 +251,11 @@ class ReviewAdmin(admin.ModelAdmin):
                     dob = tmdb_person['birthday']
                 g = 'M'
                 if tmdb_person['gender'] == 1: g = 'F'
-                pp = person(first_name = first_name, last_name = last_name, date_of_birth = dob, gender = g, imdb = tmdb_person['imdb_id'])
+                pp = person(first_name = first_name, last_name = last_name, date_of_birth = dob, gender = g, imdb = tmdb_person['imdb_id'], tmdb = tmdb_person['id'])
                 if 'deathday' in tmdb_person.keys() and tmdb_person['deathday'] is not None:
                     pp.date_of_death = tmdb_person['deathday']
                 pp.save()
-                #self.message_user(request, 'added %s'%(pp.name()))
+                self.message_user(request, 'added %s'%(pp.name()))
                 cast += [ pp ]
         
         for i in range(len(tmdb_crew)):
@@ -262,8 +264,9 @@ class ReviewAdmin(admin.ModelAdmin):
             pid = c['id']
             tmdb_person = tmdb.People(pid).info()
             
-            if len(person.objects.filter(imdb = tmdb_person['imdb_id'])) > 0:
-                pp = person.objects.get(imdb = tmdb_person['imdb_id'])
+            if len(person.objects.filter(tmdb = tmdb_person['id'])) > 0:
+                pp = person.objects.get(tmdb = tmdb_person['id'])
+                self.message_user(request, 'added %s'%(pp.name()))
                 director += [ pp ]
             else:
                 names = tmdb_person['name'].split()
@@ -288,10 +291,11 @@ class ReviewAdmin(admin.ModelAdmin):
                 if 'birthday' in tmdb_person.keys() and tmdb_person['birthday'] is not None:
                     dob = tmdb_person['birthday']
                 g = 'M'
-                if tmdb_person['gender'] == 1: g = 'F'
-                pp = person(first_name = first_name, last_name = last_name, date_of_birth = dob, gender = g, imdb = tmdb_person['imdb_id'])
+                if tmdb_person['gender'] == 1: g = 'F'                
+                pp = person(first_name = first_name, last_name = last_name, date_of_birth = dob, gender = g, imdb = tmdb_person['imdb_id'], tmdb=tmdb_person['id'])
                 if 'deathday' in tmdb_person.keys() and tmdb_person['deathday'] is not None:
                     pp.date_of_death = tmdb_person['deathday']
+                self.message_user(request, 'added %s'%(pp.name()))
                 pp.save()
                 director += [ pp ]
         return [cast, director]
@@ -331,8 +335,12 @@ class ReviewAdmin(admin.ModelAdmin):
             self.tmdb_movie = tmdb.Movies(m['id'])
             self.cast, self.director = self.add_people(self.tmdb_movie, request, ncast)
             for c in self.cast:
-                if len(obj.cast.filter(imdb=c.imdb)) == 0:
+                if len(obj.cast.filter(tmdb=c.tmdb)) == 0:
                     obj.cast.add(c)
+            for c in self.director:
+                if len(obj.director.filter(tmdb=c.tmdb)) == 0:
+                    obj.director.add(c)
+
         if change and ncast < len(obj.cast.all()):
             for i,c in enumerate(obj.cast.all()):
                 if i >= ncast:
