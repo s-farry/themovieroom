@@ -178,7 +178,8 @@ class ReviewAdmin(admin.ModelAdmin):
         rows_updated = queryset.update(status='p')
         for obj in queryset:
             obj.status='p'
-            obj.published_date = timezone.now
+            obj.published_date = timezone.now()
+            obj.save()
         if rows_updated == 1:
             message_bit = "1 review was"
         else:

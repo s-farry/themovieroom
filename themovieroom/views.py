@@ -57,7 +57,7 @@ def print_movie(block, f,m):
     f.write('{% block '+block+' %}')
     if review.objects.filter(status='p').filter(tmdb=m['id']).exists():
         r = review.objects.get(tmdb=m['id'])
-        f.write("<a href=\"{% url 'films:detail' "+str(r.link_title)+" %}\">"+m["title"]+"</a>&nbsp;&nbsp;")
+        f.write("<a href=\"{% url 'films:title' '"+str(r.link_title)+"' %}\">"+m["title"]+"</a>&nbsp;&nbsp;")
         for star in r.stars():
             if star == 1: f.write("★")
             elif star == 0.5: f.write("1/2")

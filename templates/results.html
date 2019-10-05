@@ -35,7 +35,7 @@ Found {{ reviews.count }} Reviews
 {% endif %}
 </th></tr>
 {% for film in reviews %}
-  <tr><td> <a href = "{% url 'films:detail' film.id %}">{{film.title}} ({{film.release_date.year}})</a></td></tr>
+  <tr><td> <a href = "{% url 'films:title' review.link_title %}">{{film.title}} ({{film.release_date.year}})</a></td></tr>
   {% endfor %}
 </table>
 {% endif %}
