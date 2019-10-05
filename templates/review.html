@@ -55,7 +55,7 @@ Starring:
 
 {% block sidebar %}
 {% if not request|is_mobile %}
-<table id = "t01"><tbody>
+<table id = "cast"><tbody>
 <tr><th>Directed by</th></tr>
     {% for person in review.director.all %}
 <tr><td> <a href = "{% url 'persons' person.id %}">{{ person.first_name }} {{person.last_name}}</td></tr>

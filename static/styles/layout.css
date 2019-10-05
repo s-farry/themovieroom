@@ -149,13 +149,16 @@ ul {
 
 img#profile { width: 200px; }
 
-table#t01 tr:nth-child(even), table#t02 tr:nth-child(even), table#t03 tr:nth-child(even) {
+table#cast, table#cinema{
+    font-size:1.1em;
+}
+table#cast tr:nth-child(even), table#cinema tr:nth-child(even), table#t03 tr:nth-child(even) {
     background-color: #eee;
 }
-table#t01 tr:nth-child(odd), table#t02 tr:nth-child(odd), table#t03 tr:nth-child(odd) {
+table#cast tr:nth-child(odd), table#cinema tr:nth-child(odd), table#t03 tr:nth-child(odd) {
     background-color: #fff;
 }
-table#t01 th {
+table#cast th, table#cinema th{
     color: var(--secondary-font-color);
     background-color: #333333;
 }
@@ -163,10 +166,10 @@ table#t02 th, table#t03 th {
     color: var(--background-color);
 }
 
-table#t01 td, th, table#t02 td, th table #t03 td,th {
+table#cast td, th, table#cinema td, th table #t03 td,th {
     padding:5px;
 }
-table#t01 {
+table#cast, table#cinema{
     padding:0px;
     border: 2px;
     width: 300px;
@@ -214,7 +217,7 @@ table#t03 {
 
 #container #homepage .synopsis figure {float:left;margin-right:0px;display:block;height:200px;width:313px;margin:1px;}
 #container #homepage .synopsis figure img{float:left; width:313px;height:200px;}
-#container #homepage .synopsis figcaption {height: 50px;width:299px;padding:4px;bottom:30px;padding-left:10px;};
+#container #homepage .synopsis figcaption {height: 50px;width:299px;padding:4px;bottom:30px;padding-left:10px;font-size:1.2em};
 
 #container #homepage .synopsis{padding: 0px 0px 0px 0px;margin-top:30px;margin-bottom:100px;margin-left:0px;margin-right:0px;background-color:var(--main-color);}
 
@@ -298,6 +301,16 @@ blockquote cite:before {
     content: "\2013";
 }
 */
+
+div.review{
+    font-size:1.2em;
+}
+article.review h2{
+    font-size:1.5em;
+}
+article.review h3{
+    font-size:1.2em;
+}
 
 article.review img{padding:10px;margin-top:10px;}
 div.review::first-letter {
