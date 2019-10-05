@@ -59,8 +59,9 @@ def print_movie(block, f,m):
         r = review.objects.get(tmdb=m['id'])
         f.write("<a href=\"{% url 'films:title' '"+str(r.link_title)+"' %}\">"+m["title"]+"</a>&nbsp;&nbsp;")
         for star in r.stars():
-            if star == 1: f.write("★")
-            elif star == 0.5: f.write("1/2")
+            if star == 1: f.write('<span class="star-icon full">&#9734;</span>')
+            elif star == 0.5 : f.write('<span class="star-icon half">&#9734;</span>')
+            elif star == 0 : f.write('<span class="star-icon">&#9734;</span>')
     else:
         f.write(m['title'].encode('utf-8'))
     f.write('{% endblock %}\n')
