@@ -34,7 +34,7 @@
 <h2>{{ review.title }} ( {{ review.release_date.year }} )</h2>
 <h3><span id = "stars">{% for star in review.stars  %}{% if star == 1 %}<span class="star-icon full">&#9734;</span>{% elif star == 0.5 %}<span class="star-icon half">&#9734;</span>{% elif star == 0 %}<span class="star-icon">&#9734;</span>{% endif %}{% endfor %}</span> &nbsp; | &nbsp; {{review.published_date.date}}</h3>
 {% if request|is_mobile %}
-<p>
+  <div class="mobile">
 Director: {% for person in review.director.all %} {{ person.first_name }} {{person.last_name}} {% endfor %} </br>
 Runtime: {{ review.runtime }} minutes </br>
 Starring:
@@ -45,11 +45,16 @@ Starring:
 {% endif %}
 {{ person.first_name }} {{person.last_name}}
 {% endfor %}
+</div>
+<div class="review">
+  {{review.body | safe}}
+  </div>
 </p>
-{% endif %}
+{% else %}
 <div class = "review">
   {{review.body | safe}}
   </div>
+{% endif %}
   </article>
 {% endblock %}
 

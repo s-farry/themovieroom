@@ -11,7 +11,7 @@ html{overflow-y:scroll; font-size:100%} /* Forces a scrollbar when the viewport 
 
 /* set up some variables to use */
 :root {
-    --main-font-family:"Karla", sans-serif;
+    --main-font-family:"Oswald", sans-serif;
     --main-color: #333333;
     --secondary-color:#979797;
     --secondary-font-color:#C0BAB6;
@@ -286,7 +286,7 @@ blockquote {
     display:block;
     font-family:var(--main-font-family);
     color:var(--main-color);
-    font-size:1.25em;
+    font-size:1.6em;
     font-style: italic;
     /*margin-top:30px;*/
     margin-bottom:10px;
@@ -305,6 +305,10 @@ blockquote cite:before {
 }
 */
 
+div.mobile{
+    font-size:1.2em;
+}
+
 div.review{
     font-size:1.2em;
 }
@@ -318,7 +322,7 @@ article.review h3{
 article.review img{padding:10px;margin-top:10px;}
 div.review::first-letter {
   color:var(--tertiary-font-color);
-  font-family:"Karla", serif;
+  font-family:"MerriWeather", serif;
   float:left;
   font-size:5em;
   line-height:0.7;
